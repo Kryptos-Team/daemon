@@ -223,7 +223,7 @@ fn_install_getopt() {
   echo -e ""
   echo -e "Commands"
   echo -e "install\t\t| Select daemon to install"
-  echo -e "coin_name\t| Enter coin name daemon to install. e.g $0 litecoin"
+  echo -e "coin_name\t| Enter coin name daemon to install. e.g $0 litecoind"
   echo -e "list\t\t| List all coin daemons available to install"
   exit
 }
@@ -297,5 +297,14 @@ if [ "${short_name}" == "core" ]; then
       echo -e "result: ${result}"
       echo -e "daemon name: ${daemon_name}"
     fi
+  elif [ -n "${user_input}" ]; then
+    fn_daemon_info
+    if [ "${user_input}" == "${daemon_name}" ] || [ "${user_input}" == "${short_name}" ]; then
+      fn_install_file
+    else
+      echo -e "[ FAIL ] unknown daemon name"
+    fi
+  else
+    fn_install_getopt
   fi
 fi

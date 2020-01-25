@@ -98,7 +98,6 @@ fn_bootstrap_fetch_file() {
   if [ -f "${local_file_dir}/${local_file_name}" ]; then
     # Run file if run is set
     if [ "${run}" == "run" ]; then
-      # shellcheck source=/dev/null
       source "${local_file_dir}/${local_file_name}"
     fi
   fi

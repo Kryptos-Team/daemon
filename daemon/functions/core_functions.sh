@@ -61,6 +61,11 @@ command_wipe.sh() {
   fn_fetch_function
 }
 
+command_donate.sh() {
+  function_file="${FUNCNAME[0]}"
+  fn_fetch_function
+}
+
 # Checks
 check.sh() {
   function_file="${FUNCNAME[0]}"

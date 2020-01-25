@@ -51,7 +51,7 @@ fn_create_log_file() {
 # Core function that is required first
 core_functions.sh() {
   function_file="${FUNCNAME[0]}"
-  fn_bootstrap_fetch_file_github "daemon/functions" "core_functions.sh" "${functions_dir}" "chmodx" "run" "noforcedl" "nomd5"
+  fn_bootstrap_fetch_file_github "daemon/functions" "core_functions.sh" "${functions_dir}" "chmodx" "run" "forcedl" "nomd5"
 }
 
 # Bootstrap
@@ -310,4 +310,5 @@ if [ "${short_name}" == "core" ]; then
 # Daemon mode
 else
   core_functions.sh
+
 fi

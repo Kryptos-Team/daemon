@@ -1,0 +1,8 @@
+dist: bionic
+
+addons:
+  apt:
+    packages:
+    - shellcheck
+
+script: bash tests/shellcheck.sh

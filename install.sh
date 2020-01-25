@@ -290,4 +290,9 @@ if [ "${short_name}" == "core" ]; then
 # Daemon mode
 else
   core_functions.sh
+  if [ ! -f "${tmp_dir}/install.sh" ]; then
+    fn_fetch_file_github "" "install.sh" "${tmp_dir}" "chmodx" "norun" "noforcedl" "nomd5"
+  fi
+
+  fn_ansi_loader
 fi

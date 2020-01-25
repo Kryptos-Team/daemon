@@ -32,26 +32,10 @@ githubuser="Kryptos-Team"
 githubrepo="daemon"
 githubbranch="master"
 
-fn_create_dir() {
-  if [ ! -d "${log_dir}" ]; then
-    mkdir -p "${log_dir}"
-  fi
-
-  if [ ! -d "${tmp_dir}" ]; then
-    mkdir -p "${tmp_dir}"
-  fi
-}
-
-fn_create_log_file() {
-  if [ ! -f "${daemon_logs}" ]; then
-    touch "${daemon_logs}"
-  fi
-}
-
 # Core function that is required first
 core_functions.sh() {
   function_file="${FUNCNAME[0]}"
-  fn_bootstrap_fetch_file_github "daemon/functions" "core_functions.sh" "${functions_dir}" "chmodx" "run" "forcedl" "nomd5"
+  fn_bootstrap_fetch_file_github "daemon/functions" "core_functions.sh" "${functions_dir}" "chmodx" "run" "noforcedl" "nomd5"
 }
 
 # Bootstrap
@@ -267,9 +251,6 @@ fi
 
 # Kryptos Installer mode
 if [ "${short_name}" == "core" ]; then
-  # Create missing directories and files
-  fn_create_dir
-  fn_create_log_file
   # Download the latest daemon list. This is the list of all supported daemons
   fn_bootstrap_fetch_file_github "daemon/data" "daemon_list.csv" "${data_dir}" "nochmodx" "norun" "forcedl" "nomd5"
   if [ ! -f "${daemon_list}" ]; then
@@ -309,5 +290,4 @@ if [ "${short_name}" == "core" ]; then
 # Daemon mode
 else
   core_functions.sh
-
 fi

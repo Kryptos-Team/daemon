@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-function_selfname=$(basename "$(readlink -f "${BASH_SOURCE[0]}")")
+local function_self_name=$(basename "$(readlink -f "${BASH_SOURCE[0]}")")
 
 ### Define all commands here
 ## User commands | Trigger commands | Description

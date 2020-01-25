@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-command_name="CONSOLE"
-command_action="Console"
-function_selfname=$(basename "$(readlink -f "${BASH_SOURCE[0]}")")
+local command_name="CONSOLE"
+local command_action="Console"
+local function_self_name=$(basename "$(readlink -f "${BASH_SOURCE[0]}")")
 
 echo -e "${lightyellow}Support Kryptos Team${default}"
 echo -e "===================="

@@ -157,6 +157,11 @@ install_daemon_dir.sh() {
   fn_fetch_function
 }
 
+install_header.sh() {
+  function_file="${FUNCNAME[0]}"
+  fn_fetch_function
+}
+
 install_daemon_files.sh() {
   function_file="${FUNCNAME[0]}"
   fn_fetch_function

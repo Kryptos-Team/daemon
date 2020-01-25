@@ -58,16 +58,16 @@ if [ -z "${getopt}" ]; then
   fn_opt_usage
 fi
 
-# Command exists
+# Command exists.
 for i in "${optcommands[@]}"; do
   if [ "${i}" == "${getopt}" ]; then
-    # Seek and run command
+    # Seek and run command.
     index="0"
     for ((index = "0"; index < ${#currentopt[@]}; index += 3)); do
       currcmdamount=$(echo -e "${currentopt[index]}" | awk -F ';' '{ print NF }')
-      for ((currcmdindex = 1; curcmdindex <= currcmdamount; currcmdindex++)); do
+      for ((currcmdindex = 1; currcmdindex <= currcmdamount; currcmdindex++)); do
         if [ "$(echo -e "${currentopt[index]}" | awk -F ';' -v x=${currcmdindex} '{ print $x }')" == "${getopt}" ]; then
-          # Run command
+          # Run command.
           eval "${currentopt[index + 1]}"
           core_exit.sh
           break

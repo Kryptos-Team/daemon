@@ -307,4 +307,7 @@ if [ "${short_name}" == "core" ]; then
   else
     fn_install_getopt
   fi
+# Daemon mode
+else
+  core_functions.sh
 fi

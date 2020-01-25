@@ -21,6 +21,7 @@ daemon_list_menu="${data_dir}/daemon_list_menu.csv"
 config_dir="${daemon_dir}/config"
 config_dir_daemon="${config_dir}/${daemon_name}"
 log_dir="${daemon_dir}/logs"
+daemon_logs="${log_dir}/daemon.log"
 tmp_dir="${daemon_dir}/tmp"
 
 user_input="${1}"
@@ -29,6 +30,22 @@ user_input="${1}"
 githubuser="Kryptos-Team"
 githubrepo="daemon"
 githubbranch="master"
+
+fn_create_dir() {
+  if [ ! -d "${log_dir}" ]; then
+    mkdir -p "${log_dir}"
+  fi
+
+  if [ ! -d "${tmp_dir}" ]; then
+    mkdir -p "${tmp_dir}"
+  fi
+}
+
+fn_create_log_file() {
+  if [ ! -f "${daemon_logs}" ]; then
+    touch "${daemon_logs}"
+  fi
+}
 
 # Core function that is required first
 core_functions.sh() {
@@ -55,7 +72,7 @@ fn_bootstrap_fetch_file() {
     # If curl exists, download file
     if [ -n "$(command -v curl 2>/dev/null)" ]; then
       echo -en "fetching ${local_file_name}...\c"
-      curlcmd=$(curl -s --fail -L -o "${local_file_dir}/${local_file_name}" "${remote_file_url}" 2>&1)
+      curlcmd=$(curl -s --fail -L -H 'Cache-Control: no-cache' -o "${local_file_dir}/${local_file_name}" "${remote_file_url}" 2>&1)
       local exitcode=$?
       if [ ${exitcode} -ne 0 ]; then
         echo -e "FAIL"
@@ -107,11 +124,11 @@ fn_bootstrap_fetch_file_github() {
 fn_print_center() {
   columns=$(tput cols)
   line="$*"
-  printf "%s\n" $(((${#line} + columns) / 2)) "${line}"
+  printf "%*s\n" $(((${#line} + columns) / 2)) "${line}"
 }
 
 fn_print_horizontal() {
-  printf '%s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' "="
+  printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' "="
 }
 
 fn_install_menu_bash() {
@@ -124,8 +141,9 @@ fn_install_menu_bash() {
   fn_print_center "${caption}"
   fn_print_horizontal
   menu_options=()
+
   while read -r line || [[ -n "${line}" ]]; do
-    var=$(echo -e "${line}" | awk -F "," '{ print $2 " - " $3 }')
+    var=$(echo -e "${line}" | awk -F "," '{print $2 " - " $3}')
     menu_options+=("${var}")
   done <"${options}"
   menu_options+=("Cancel")
@@ -180,10 +198,19 @@ fn_install_menu() {
     fn_install_menu_whiptail "${menucmd}" selection "${title}" "${caption}" "${options}" 40 80 30
     ;;
   *)
-    fn_install_menu_bash selection "${title} ${caption} ${options}"
+    fn_install_menu_bash selection "${title}" "${caption}" "${options}"
     ;;
   esac
   eval "$resultvar=\"${selection}\""
+}
+
+# Gets server info from daemon_list.csv and puts into array
+fn_daemon_info() {
+  IFS=","
+  daemon_info_array=($(grep -aw "$user_input" "${daemon_list}"))
+  short_name="${daemon_info_array[1]}"       # LTC
+  daemon_name="${daemon_info_array[0]}"      # litecoind
+  daemon_full_name="${daemon_info_array[2]}" # Litecoin
 }
 
 fn_install_getopt() {
@@ -216,6 +243,9 @@ fi
 
 # Kryptos Installer mode
 if [ "${short_name}" == "core" ]; then
+  # Create missing directories and files
+  fn_create_dir
+  fn_create_log_file
   # Download the latest daemon list. This is the list of all supported daemons
   fn_bootstrap_fetch_file_github "daemon/data" "daemon_list.csv" "${data_dir}" "nochmodx" "norun" "forcedl" "nomd5"
   if [ ! -f "${daemon_list}" ]; then
@@ -225,7 +255,22 @@ if [ "${short_name}" == "core" ]; then
 
   if [ "${user_input}" == "list" ] || [ "${user_input}" == "l" ]; then
     {
-      tail -n +1 "${daemon_list}" | awk -F "," '{print $2 "\t" $3}'
+      tail -n +1 "${daemon_list}" | awk -F "," '{print $1 "\t" $2 "\t" $3}'
     } | column -s $'\t' -t | more
+    exit
+  elif [ "${user_input}" == "install" ] || [ "${user_input}" == "i" ]; then
+    tail -n +2 "${daemon_list}" | awk -F "," '{print $1 "," $2 "," $3}' >"${daemon_list_menu}"
+    fn_install_menu result "Kryptos Team" "Select coin daemon name to install" "${daemon_list_menu}"
+    user_input="${result}"
+    fn_daemon_info
+    if [ "${result}" == "${daemon_name}" ]; then
+      exit 0
+    elif [ "${result}" == "" ]; then
+      echo -e "Install cancelled"
+    else
+      echo -e "[ FAIL ] menu result does not match daemon name"
+      echo -e "result: ${result}"
+      echo -e "daemon name: ${daemon_name}"
+    fi
   fi
 fi

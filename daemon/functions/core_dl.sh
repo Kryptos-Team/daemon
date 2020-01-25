@@ -133,27 +133,29 @@ fn_fetch_file() {
         fn_script_log_fatal "Downloading ${local_file_name}"
         echo -e "${remote_file_url}" >>"${daemon_logs}"
         echo -e "${curlcmd}" >>"${daemon_logs}"
-        core_exit.sh
-      else
-        fn_print_ok_eol_nl
-        if [ -f "${daemon_logs}" ]; then
-          fn_script_log_pass "Downloading ${local_file_name}"
-        fi
       fi
-      # Remove trap
-      trap - INT
-      # Make file executable if chmddx is set
-      if [ "${chmodx}" == "chmodx" ]; then
-        chmod +x "${local_file_dir}/${local_file_name}"
+      echo -e "${remote_file_url}"
+      echo -e "${curlcmd}"
+      core_exit.sh
+    else
+      fn_print_ok_eol_nl
+      if [ -f "${daemon_logs}" ]; then
+        fn_script_log_pass "Downloading ${local_file_name}"
       fi
     fi
+    # Remove trap
+    trap - INT
+    # Make file executable if chmddx is set
+    if [ "${chmodx}" == "chmodx" ]; then
+      chmod +x "${local_file_dir}/${local_file_name}"
+    fi
+  fi
 
-    if [ -f "${local_file_dir}/${local_file_name}" ]; then
-      fn_dl_md5
-      # Execute file is run is set
-      if [ "${run}" == "run" ]; then
-        source "${local_file_dir}/${local_file_name}"
-      fi
+  if [ -f "${local_file_dir}/${local_file_name}" ]; then
+    fn_dl_md5
+    # Execute file is run is set
+    if [ "${run}" == "run" ]; then
+      source "${local_file_dir}/${local_file_name}"
     fi
   fi
 }

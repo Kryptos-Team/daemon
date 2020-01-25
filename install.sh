@@ -73,7 +73,7 @@ fn_bootstrap_fetch_file() {
     # If curl exists, download file
     if [ -n "$(command -v curl 2>/dev/null)" ]; then
       echo -en "fetching ${local_file_name}...\c"
-      curlcmd=$(curl -s --fail -L -H 'Cache-Control: no-cache' -o "${local_file_dir}/${local_file_name}" "${remote_file_url}" 2>&1)
+      curlcmd=$(curl -s --fail -L -o "${local_file_dir}/${local_file_name}" "${remote_file_url}" 2>&1)
       local exitcode=$?
       if [ ${exitcode} -ne 0 ]; then
         echo -e "FAIL"
@@ -99,7 +99,7 @@ fn_bootstrap_fetch_file() {
     # Run file if run is set
     if [ "${run}" == "run" ]; then
       # shellcheck source=/dev/null
-      source "${local_dir_name}/${local_file_name}"
+      source "${local_file_dir}/${local_file_name}"
     fi
   fi
 }

@@ -15,6 +15,11 @@ core_exit.sh() {
   fn_fetch_function
 }
 
+core_getopt.sh() {
+  function_file="${FUNCNAME[0]}"
+  fn_fetch_function
+}
+
 core_trap.sh() {
   function_file="${FUNCNAME[0]}"
   fn_fetch_function

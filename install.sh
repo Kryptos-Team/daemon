@@ -295,4 +295,6 @@ else
   fi
 
   fn_ansi_loader
+  getopt=$1
+  core_getopt.sh
 fi

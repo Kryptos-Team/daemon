@@ -99,7 +99,7 @@ fn_bootstrap_fetch_file_github() {
   forcedl="${6:-0}"
   md5="${7:-0}"
   # Passes variables to the file download function
-  fn_bootstrap_fetch_file "${remote_file_url}" "${local_file_dir}" "${chmodx}" "${run}" "${forcedl}" "${md5}"
+  fn_bootstrap_fetch_file "${remote_file_url}" "${local_file_dir}" "${local_file_name}" "${chmodx}" "${run}" "${forcedl}" "${md5}"
 }
 
 # Installer menu

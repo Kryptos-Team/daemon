@@ -11,8 +11,8 @@ version="v1.0.0"
 short_name="core"
 daemon_name="core"
 root_dir=$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")
-selfname=$(basename "$(readlink -f "${BASH_SOURCE[0]}")")
-lock_selfname=".${selfname}.lock"
+self_name=$(basename "$(readlink -f "${BASH_SOURCE[0]}")")
+lock_selfname=".${self_name}.lock"
 daemon_dir="${root_dir}/daemon"
 functions_dir="${daemon_dir}/functions"
 data_dir="${daemon_dir}/data"
@@ -23,6 +23,7 @@ config_dir_daemon="${config_dir}/${daemon_name}"
 log_dir="${daemon_dir}/logs"
 daemon_logs="${log_dir}/daemon.log"
 tmp_dir="${daemon_dir}/tmp"
+daemon_files="${root_dir}/files"
 
 user_input="${1}"
 
@@ -143,7 +144,7 @@ fn_install_menu_bash() {
   menu_options=()
 
   while read -r line || [[ -n "${line}" ]]; do
-    var=$(echo -e "${line}" | awk -F "," '{print $2 " - " $3}')
+    var=$(echo -e "${line}" | awk -F "," '{print $1 " - " $2}')
     menu_options+=("${var}")
   done <"${options}"
   menu_options+=("Cancel")
@@ -167,8 +168,8 @@ fn_install_menu_whiptail() {
   IFS=","
   menu_options=()
   while read -r line; do
-    key=$(echo -e "${line}" | awk -F "," '{print $3}')
-    val=$(echo -e "${line}" | awk -F "," '{print $2}')
+    key=$(echo -e "${line}" | awk -F "," '{print $2}')
+    val=$(echo -e "${line}" | awk -F "," '{print $1}')
     menu_options+=("${val//\"/}" "${key//\"/}")
   done <"${options}"
   OPTION=$(${menucmd} --title "${title}" --menu "${caption}" "${height}" "${width}" "${menuheight}" "${menu_options[@]}" 3>&1 1>&2 2>&3)
@@ -227,6 +228,30 @@ fn_install_getopt() {
   exit
 }
 
+fn_install_file() {
+  local_file_name="${daemon_name}"
+  if [ -e "${local_file_name}" ]; then
+    i=2
+    while [ -e "$local_file_name-${i}" ]; do
+      ((i++))
+    done
+    local_file_name="${local_file_name}-${i}"
+  fi
+  cp -R "${self_name}" "${local_file_name}"
+  sed -i -e "s/short_name=\"core\"/short_name=\"${short_name}\"/g" "${local_file_name}"
+  sed -i -e "s/daemon_name=\"core\"/daemon_name=\"${daemon_name}\"/g" "${local_file_name}"
+  echo -e "Installed ${daemon_name} daemon as ${local_file_name}"
+  echo -e ""
+  if [ ! -d "${daemon_files}" ]; then
+    echo -e "./${local_file_name} install"
+  else
+    echo -e "Remember to check daemon ports"
+    echo -e "./${local_file_name} details"
+  fi
+  echo -e ""
+  exit
+}
+
 # Prevents install.sh to run as root, except if doing a dependency install
 if [ "$(whoami)" == "root" ]; then
   if [ "${user_input}" == "install" ]; then
@@ -264,7 +289,7 @@ if [ "${short_name}" == "core" ]; then
     user_input="${result}"
     fn_daemon_info
     if [ "${result}" == "${daemon_name}" ]; then
-      exit 0
+      fn_install_file
     elif [ "${result}" == "" ]; then
       echo -e "Install cancelled"
     else

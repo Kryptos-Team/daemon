@@ -222,4 +222,10 @@ if [ "${short_name}" == "core" ]; then
     echo -e "[ FAIL ] daemon_list.csv could not be loaded"
     exit 1
   fi
+
+  if [ "${user_input}" == "list" ] || [ "${user_input}" == "l" ]; then
+    {
+      tail -n +1 "${daemon_list}" | awk -F "," '{print $2 "\t" $3}'
+    } | column -s $'\t' -t | more
+  fi
 fi

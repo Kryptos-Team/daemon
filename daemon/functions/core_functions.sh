@@ -107,6 +107,11 @@ check_tmuxexception.sh() {
   fn_fetch_function
 }
 
+check_system_requirements.sh() {
+  function_file="${FUNCNAME[0]}"
+  fn_fetch_function
+}
+
 # Info
 info_status.sh() {
   function_file="${FUNCNAME[0]}"

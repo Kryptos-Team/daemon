@@ -22,7 +22,7 @@ fn_ansi_loader() {
     white="\e[97m"
   fi
   # carriage return and erase to end of line
-  creeol="\r033[K"
+  creeol="\e[033K"
 }
 
 fn_sleep_time() {
@@ -30,7 +30,7 @@ fn_sleep_time() {
     if [ -z "${sleeptime}" ]; then
       sleeptime=0.5
     fi
-    sleep "${sleeptim}"
+    sleep "${sleeptime}"
   fi
 }
 

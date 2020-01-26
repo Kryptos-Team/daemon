@@ -51,6 +51,11 @@ command_install.sh() {
   fn_fetch_function
 }
 
+fn_autoinstall() {
+  auto_install=1
+  command_install.sh
+}
+
 command_restart.sh() {
   function_file="${FUNCNAME[0]}"
   fn_fetch_function
@@ -178,6 +183,11 @@ install_header.sh() {
 }
 
 install_daemon_files.sh() {
+  function_file="${FUNCNAME[0]}"
+  fn_fetch_function
+}
+
+install_config.sh() {
   function_file="${FUNCNAME[0]}"
   fn_fetch_function
 }

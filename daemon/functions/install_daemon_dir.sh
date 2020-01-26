@@ -13,8 +13,10 @@ if [ -f "${daemon_files}/${daemon_installed}" ]; then
 fi
 echo -e "${daemon_files}"
 echo -e ""
-if ! fn_prompt_yn "Continue?" Y; then
-  exit
+if [ -z "${auto_install}" ]; then
+  if ! fn_prompt_yn "Continue?" Y; then
+    exit
+  fi
 fi
 
 if [ ! -d "${daemon_files}" ]; then

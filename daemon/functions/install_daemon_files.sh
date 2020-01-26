@@ -36,6 +36,8 @@ fn_install_daemon_files
 
 echo -e ""
 echo -e "==================================="
-if ! fn_prompt_yn "Was the install successful?" Y; then
-  install_retry.sh
+if [ -z "${auto_install}" ]; then
+  if ! fn_prompt_yn "Was the install successful?" Y; then
+    install_retry.sh
+  fi
 fi

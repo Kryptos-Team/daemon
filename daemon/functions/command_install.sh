@@ -15,7 +15,6 @@ else
   check_deps.sh
   install_daemon_files.sh
   install_config.sh
-  install_daemon.sh
   install_complete.sh
 fi
 

@@ -228,8 +228,10 @@ fn_deps_build_debain() {
   fi
 
   # Daemon specific requirements
-  if [ "${short_name}" == "BTC" ] || [ "${short_name}" == "LTC" ]; then
-    array_deps_required+=(berkeley-complete build-essential libtool autotools-dev automake pkg-config libssl-dev libevent-dev bsdmainutils python3 libboost-all-dev software-properties-common)
+  if [ "${short_name}" == "BTC" ]; then
+    array_deps_required+=(build-essential)
+  elif [ "${short_name}" == "LTC" ]; then
+    array_deps_required+=(berkeley-complete build-essential libtool autotools-dev automake pkg-config libssl-dev libevent-dev bsdmainutils python3 libboost-system-dev libboost-filesystem-dev libboost-chrono-dev libboost-test-dev libboost-thread-dev)
   fi
 
   fn_check_loop
@@ -246,8 +248,10 @@ fn_deps_build_redhat() {
   fi
 
   # Daemon specific requirements
-  if [ "${short_name}" == "BTC" ] || [ "${short_name}" == "LTC" ]; then
-    array_deps_required+=(libtool autotools-dev automake pkg-config libssl-dev libevent-dev bsdmainutils python3 libboost-all-dev)
+  if [ "${short_name}" == "BTC" ]; then
+    array_deps_required+=(build-essential)
+  elif [ "${short_name}" == "LTC" ]; then
+    array_deps_required+=(gcc-c++ libtool make autoconf automake openssl-devel libevent-devel boost-devel libdb4-devel libdb4-cxx-devel python3)
   fi
 
   fn_check_loop

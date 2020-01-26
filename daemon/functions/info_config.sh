@@ -33,4 +33,6 @@ fn_info_config_litecoind() {
 
 if [ "${short_name}" == "LTC" ]; then
   fn_info_config_litecoind
+  daemon_config_file="${daemon_cfg_dir}/litecoin.conf"
+  daemon_bin_dir="${daemon_files}/litecoin-0.17.1/bin"
 fi

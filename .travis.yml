@@ -1,15 +1,10 @@
 dist: bionic
 
-addons:
-  apt:
-    packages:
-    - shellcheck
+before_script:
+  - rm -rf daemon
 
 jobs:
   include:
-    - stage: shell check
-      name: "Shell Check"
-      script: bash tests/shellcheck.sh
     - stage: coin
       name: "Bitcoin Test"
       script:

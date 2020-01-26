@@ -56,7 +56,7 @@ fn_dl_extract() {
   local_file_name="${2}"
   extract_dir="${3}"
   # Extracts archives
-  echo -en "extracting ${local_file_name}"
+  echo -en "extracting ${local_file_name}..."
   mime=$(file -b --mime-type "${local_file_dir}/${local_file_name}")
   if [ ! -d "${extract_dir}" ]; then
     mkdir "${extract_dir}"

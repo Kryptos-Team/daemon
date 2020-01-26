@@ -127,106 +127,106 @@ fn_print_dots_nl() {
   echo -en "\n"
 }
 
-# [  OK  ]
+# [ OK ]
 fn_print_ok() {
   if [ -n "${command_name}" ]; then
-    echo -en "${creeol}[${green}  OK  ${default}] ${command_name} ${self_name}: $*"
+    echo -en "${creeol}[${green} OK ${default}] ${command_name} ${self_name}: $*"
   else
-    echo -en "${creeol}[${green}  OK  ${default}] $*"
+    echo -en "${creeol}[${green} OK ${default}] $*"
   fi
   fn_sleep_time
 }
 
-# [  OK  ]
+# [ OK ]
 fn_print_ok_nl() {
   if [ -n "${command_name}" ]; then
-    echo -en "${creeol}[${green}  OK  ${default}] ${command_name} ${self_name}: $*"
+    echo -en "${creeol}[${green} OK ${default}] ${command_name} ${self_name}: $*"
   else
-    echo -en "${creeol}[${green}  OK  ${default}] $*"
+    echo -en "${creeol}[${green} OK ${default}] $*"
   fi
   fn_sleep_time
   echo -en "\n"
 }
 
-# [  FAIL  ]
+# [ FAIL ]
 fn_print_fail() {
   if [ -n "${command_name}" ]; then
-    echo -en "${creeol}[${red}  FAIL  ${default}] ${command_name} ${self_name}: $*"
+    echo -en "${creeol}[${red} FAIL ${default}] ${command_name} ${self_name}: $*"
   else
-    echo -en "${creeol}[${red}  FAIL  ${default}] $*"
+    echo -en "${creeol}[${red} FAIL ${default}] $*"
   fi
   fn_sleep_time
 }
 
-# [  FAIL  ]
+# [ FAIL ]
 fn_print_fail_nl() {
   if [ -n "${command_name}" ]; then
-    echo -en "${creeol}[${red}  FAIL  ${default}] ${command_name} ${self_name}: $*"
+    echo -en "${creeol}[${red} FAIL ${default}] ${command_name} ${self_name}: $*"
   else
-    echo -en "${creeol}[${red}  FAIL  ${default}] $*"
+    echo -en "${creeol}[${red} FAIL ${default}] $*"
   fi
   fn_sleep_time
   echo -en "\n"
 }
 
-# [  ERROR  ]
+# [ ERROR ]
 fn_print_error() {
   if [ -n "${command_name}" ]; then
-    echo -en "${creeol}[${red}  ERROR  ${default}] ${command_name} ${self_name}: $*"
+    echo -en "${creeol}[${red} ERROR ${default}] ${command_name} ${self_name}: $*"
   else
-    echo -en "${creeol}[${red}  ERROR  ${default}] $*"
+    echo -en "${creeol}[${red} ERROR ${default}] $*"
   fi
   fn_sleep_time
 }
 
-# [  ERROR  ]
+# [ ERROR ]
 fn_print_error_nl() {
   if [ -n "${command_name}" ]; then
-    echo -en "${creeol}[${red}  ERROR  ${default}] ${command_name} ${self_name}: $*"
+    echo -en "${creeol}[${red} ERROR ${default}] ${command_name} ${self_name}: $*"
   else
-    echo -e "${creeol}[${red}  ERROR  ${default}] $*"
+    echo -e "${creeol}[${red} ERROR ${default}] $*"
   fi
   fn_sleep_time
   echo -en "\n"
 }
 
-# [  WARN  ]
+# [ WARN ]
 fn_print_warn() {
   if [ -n "${command_name}" ]; then
-    echo -en "${creeol}[${red}  WARN  ${default}] ${command_name} ${self_name}: $*"
+    echo -en "${creeol}[${red} WARN ${default}] ${command_name} ${self_name}: $*"
   else
-    echo -en "${creeol}[${red}  WARN  ${default}] $*"
+    echo -en "${creeol}[${red} WARN ${default}] $*"
   fi
   fn_sleep_time
 }
 
-# [  WARN  ]
+# [ WARN ]
 fn_print_warn_nl() {
   if [ -n "${command_name}" ]; then
-    echo -en "${creeol}[${lightyellow}  WARN  ${default}] ${command_name} ${self_name}: $*"
+    echo -en "${creeol}[${lightyellow} WARN ${default}] ${command_name} ${self_name}: $*"
   else
-    echo -e "${creeol}[${lightyellow}  WARN  ${default}] $*"
+    echo -e "${creeol}[${lightyellow} WARN ${default}] $*"
   fi
   fn_sleep_time
   echo -en "\n"
 }
 
-# [  INFO  ]
+# [ INFO ]
 fn_print_info() {
   if [ -n "${command_name}" ]; then
-    echo -en "${creeol}[${cyan}  INFO  ${default}] ${command_name} ${self_name}: $*"
+    echo -en "${creeol}[${cyan} INFO ${default}] ${command_name} ${self_name}: $*"
   else
-    echo -en "${creeol}[${cyan}  INFO  ${default}] $*"
+    echo -en "${creeol}[${cyan} INFO ${default}] $*"
   fi
   fn_sleep_time
 }
 
-# [  INFO  ]
+# [ INFO ]
 fn_print_info_nl() {
   if [ -n "${command_name}" ]; then
-    echo -en "${creeol}[${cyan}  INFO  ${default}] ${command_name} ${self_name}: $*"
+    echo -en "${creeol}[${cyan} INFO ${default}] ${command_name} ${self_name}: $*"
   else
-    echo -e "${creeol}[${cyan}  INFO  ${default}] $*"
+    echo -e "${creeol}[${cyan} INFO ${default}] $*"
   fi
   fn_sleep_time
   echo -en "\n"

@@ -89,11 +89,11 @@ fn_dl_extract() {
 fn_fetch_trap() {
   echo -e ""
   echo -en "downloading ${local_file_name}..."
-  fn_print_cancelled_eol_nl
+  fn_print_canceled_eol_nl
   fn_script_log_info "Downloading ${local_file_name}... CANCELLED"
   fn_sleep_time
   rm -f "${local_file_dir}/${local_file_name}"
-  echo -en "downloading ${local_file_name}"
+  echo -en "downloading ${local_file_name}..."
   fn_print_removed_eol_nl
   fn_script_log_info "Downloading ${local_file_name}...REMOVED"
   core_exit.sh

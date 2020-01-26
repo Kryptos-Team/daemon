@@ -5,4 +5,14 @@ addons:
     packages:
     - shellcheck
 
-script: bash tests/shellcheck.sh
+jobs:
+  include:
+    - stage: shell check
+      name: "Shell Check"
+      script: bash tests/shellcheck.sh
+    - stage: coin
+      name: "Coin Test"
+      script:
+        - bash install.sh list
+        - bash install.sh litecoind
+        - bash litecoind autoinstall

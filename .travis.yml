@@ -11,7 +11,13 @@ jobs:
       name: "Shell Check"
       script: bash tests/shellcheck.sh
     - stage: coin
-      name: "Coin Test"
+      name: "Bitcoin Test"
+      script:
+        - bash install.sh list
+        - bash install.sh bitcoind
+        - bash bitcoind autoinstall
+    - stage: coin
+      name: "Litecoin Test"
       script:
         - bash install.sh list
         - bash install.sh litecoind

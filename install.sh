@@ -20,10 +20,10 @@ daemon_list="${data_dir}/daemon_list.csv"
 daemon_list_menu="${data_dir}/daemon_list_menu.csv"
 config_dir="${daemon_dir}/config"
 config_dir_daemon="${config_dir}/${daemon_name}"
-tmp_dir="${daemon_dir}/tmp"
 daemon_files="${root_dir}/${short_name}"
 log_dir="${daemon_files}/logs"
 daemon_logs="${log_dir}/daemon.log"
+tmp_dir="${daemon_files}/tmp"
 
 user_input="${1}"
 

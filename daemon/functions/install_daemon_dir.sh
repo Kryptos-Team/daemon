@@ -5,7 +5,7 @@ local command_action="Install"
 local function_self_name=$(basename "$(readlink -f "${BASH_SOURCE[0]}")")
 
 echo -e ""
-echo -e "${lightyellow}Daemon Directory${default}"
+echo -e "${lightyellow}${daemon_name} Directory${default}"
 echo -e "================================="
 fn_sleep_time
 if [ -d "${daemon_files}" ]; then

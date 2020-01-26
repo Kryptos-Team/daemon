@@ -24,7 +24,7 @@ fn_install_daemon_files() {
   fi
 
   fn_fetch_file "${remote_file_url}" "${local_file_dir}" "${local_file_name}" "${chmodx}" "${run}" "${forcedl}" "${md5}"
-  dn_dl_extract "${local_file_dir}" "${local_file_name}" "${daemon_files}"
+  fn_dl_extract "${local_file_dir}" "${local_file_name}" "${daemon_files}"
 }
 
 echo -e ""

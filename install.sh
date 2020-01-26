@@ -24,7 +24,9 @@ daemon_files="${root_dir}/${short_name}"
 log_dir="${daemon_files}/logs"
 daemon_logs="${log_dir}/daemon.log"
 tmp_dir="${daemon_files}/tmp"
+daemon_cfg_dir="${daemon_files}/config"
 daemon_installed="${daemon_files}/.installed"
+default_config_dir="${daemon_dir}/configurations"
 
 user_input="${1}"
 

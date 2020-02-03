@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-local command_name="UPDATE DEAMON"
+local command_name="UPDATE DAEMON"
 local command_action="Updating Daemon"
 local function_self_name=$(basename "$(readlink -f "${BASH_SOURCE[0]}")")
 

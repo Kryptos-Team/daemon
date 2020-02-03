@@ -14,13 +14,14 @@ if [ -n "${functions_dir}" ]; then
   if [ -d "${functions_dir}" ]; then
     cd "${functions_dir}" || exit
     for function_file in *; do
-      echo -en "checking function ${function_file}...\n"
+      echo -en "checking function ${function_file}... \c"
       github_file_url_dir="daemon/functions"
       get_function_file=$(curl --fail -s "https://raw.githubusercontent.com/${githubuser}/${githubrepo}/${githubbranch}/${github_file_url_dir}/${function_file}")
       exitcode=$?
       function_file_diff=$(diff "${functions_dir}/${function_file}" <(curl --fail -s "https://raw.githubusercontent.com/${githubuser}/${githubrepo}/${githubbranch}/${github_file_url_dir}/${function_file}"))
       if [ "${exitcode}" -ne 0 ]; then
-        fn_print_fail_eol_nl "removing unknown function ${function_file}\n"
+        fn_print_fail_eol_nl
+        echo -en "removing unknown function ${function_file}... \c"
         fn_script_log_fatal "removing unknown function ${function_file}"
         if ! rm -f "${function_file}"; then
           fn_print_fail_eol_nl

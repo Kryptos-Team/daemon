@@ -6,17 +6,25 @@ local function_self_name=$(basename "$(readlink -f "${BASH_SOURCE[0]}")")
 
 fn_install_daemon_files() {
   if [ "${short_name}" == "BTC" ]; then
-    remote_file_url="https://bitcoin.org/bin/bitcoin-core-0.19.0.1/bitcoin-0.19.0.1-x86_64-linux-gnu.tar.gz"
-    local_file_dir="${tmp_dir}"
     local_file_name="bitcoin-0.19.0.1-x86_64-linux-gnu.tar.gz"
+    remote_file_url="https://bitcoin.org/bin/bitcoin-core-0.19.0.1/${local_file_name}"
+    local_file_dir="${tmp_dir}"
     chmodx="nochmodx"
     run="norun"
     force="noforce"
     md5="2ba6f3b6b3ebc80d4d60147ae7f4eacb"
-  elif [ "${short_name}" == "LTC" ]; then
-    remote_file_url="https://download.litecoin.org/litecoin-0.17.1/linux/litecoin-0.17.1-x86_64-linux-gnu.tar.gz"
+  elif [ "${short_name}" == "DOGE" ]; then
+    local_file_name="dogecoin-1.14.2-x86_64-linux-gnu.tar.gz"
+    remote_file_url="https://github.com/dogecoin/dogecoin/releases/download/v1.14.2/${local_file_name}"
     local_file_dir="${tmp_dir}"
+    chmodx="nochmodx"
+    run="norun"
+    forcedl="noforcedl"
+    md5="ecc01479161d3c872f0b725f184c8983"
+  elif [ "${short_name}" == "LTC" ]; then
     local_file_name="litecoin-0.17.1-x86_64-linux-gnu.tar.gz"
+    remote_file_url="https://download.litecoin.org/litecoin-0.17.1/linux/${local_file_name}"
+    local_file_dir="${tmp_dir}"
     chmodx="nochmodx"
     run="norun"
     forcedl="noforcedl"

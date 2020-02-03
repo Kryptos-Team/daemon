@@ -8,6 +8,8 @@ info_config.sh
 
 if [ "${short_name}" == "BTC" ]; then
   eval "${daemon_bin_dir}/bitcoind -conf=${daemon_config_file}"
+elif [ "${short_name}" == "DOGE" ]; then
+  eval "${daemon_bin_dir}/dogecoind -conf=${daemon_config_file}"
 elif [ "${short_name}" == "LTC" ]; then
   eval "${daemon_bin_dir}/litecoind -conf=${daemon_config_file}"
 fi

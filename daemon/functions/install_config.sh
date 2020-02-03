@@ -47,6 +47,8 @@ fn_set_config_vars() {
 
 if [ "${short_name}" == "BTC" ]; then
   config="bitcoin.conf"
+elif [ "${short_name}" == "DOGE" ]; then
+  config="dogecoin.conf"
 elif [ "${short_name}" == "LTC" ]; then
   config="litecoin.conf"
 fi

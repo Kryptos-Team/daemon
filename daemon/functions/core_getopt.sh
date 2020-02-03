@@ -15,6 +15,7 @@ cmd_details=("dt;details" "command_details.sh" "Display the daemon information")
 cmd_donate=("do;donate" "command_donate.sh" "Donation options")
 cmd_debug=("d;debug" "command_debug.sh" "Enable/disbale debug mode")
 cmd_update=("u;update" "command_update.sh" "Check and apply daemon update")
+cmd_update_daemon=("ud;update-daemon" "command_update_daemon.sh" "Check and apply any core Daemon updates")
 
 ### Set specific opt here
 currentopt=("${cmd_start[@]}" "${cmd_stop[@]}" "${cmd_restart[@]}" "${cmd_details[@]}" "${cmd_gui[@]}")
@@ -23,7 +24,7 @@ currentopt=("${cmd_start[@]}" "${cmd_stop[@]}" "${cmd_restart[@]}" "${cmd_detail
 currentopt+=("${cmd_debug[@]}")
 
 # Installer
-currentopt+=("${cmd_autoinstall[@]}" "${cmd_install[@]}" "${cmd_update[@]}")
+currentopt+=("${cmd_autoinstall[@]}" "${cmd_install[@]}" "${cmd_update[@]}" "${cmd_update_daemon[@]}")
 
 # Donate
 currentopt+=("${cmd_donate[@]}")

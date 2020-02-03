@@ -112,6 +112,11 @@ check_root.sh() {
   fn_fetch_function
 }
 
+check_system_dir.sh() {
+  function_file="${FUNCNAME[0]}"
+  fn_fetch_function
+}
+
 check_tmuxexception.sh() {
   function_file="${FUNCNAME[0]}"
   fn_fetch_function
@@ -146,11 +151,6 @@ logs.sh() {
 }
 
 # Update
-command_update_functions.sh() {
-  function_file="${FUNCNAME[0]}"
-  fn_fetch_function
-}
-
 command_update_daemon.sh() {
   function_file="${FUNCNAME[0]}"
   fn_fetch_function

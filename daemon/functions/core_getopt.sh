@@ -14,7 +14,7 @@ cmd_gui=("g;gui" "command_gui.sh" "Start GUI  (if available)")
 cmd_details=("dt;details" "command_details.sh" "Display the daemon information")
 cmd_donate=("do;donate" "command_donate.sh" "Donation options")
 cmd_debug=("d;debug" "command_debug.sh" "Enable/disbale debug mode")
-cmd_update=("u;update" "command_update.sh" "Check and apply daemon update")
+cmd_update=("uc;update-coin" "command_update.sh" "Check and apply daemon update")
 cmd_update_daemon=("ud;update-daemon" "command_update_daemon.sh" "Check and apply any core Daemon updates")
 
 ### Set specific opt here

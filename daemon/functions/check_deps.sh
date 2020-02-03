@@ -230,6 +230,8 @@ fn_deps_build_debain() {
   # Daemon specific requirements
   if [ "${short_name}" == "BTC" ]; then
     array_deps_required+=(build-essential)
+  elif [ "${short_name}" == "DOGE" ]; then
+    array_deps_required+=(berkeley-complete build-essential libtool autotools-dev automake pkg-config libssl-dev libevent-dev bsdmainutils python3 libboost-system-dev libboost-filesystem-dev libboost-chrono-dev libboost-test-dev libboost-thread-dev)
   elif [ "${short_name}" == "LTC" ]; then
     array_deps_required+=(berkeley-complete build-essential libtool autotools-dev automake pkg-config libssl-dev libevent-dev bsdmainutils python3 libboost-system-dev libboost-filesystem-dev libboost-chrono-dev libboost-test-dev libboost-thread-dev)
   fi

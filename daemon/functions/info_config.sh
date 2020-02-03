@@ -41,13 +41,13 @@ fn_info_config_dogecoind() {
     server="${zero}"
     rpctimeout="${zero}"
   else
-    rpcuser="$(grep 'rpcuser' ${daemon_cfg_dir}/litecoin.conf | sed -e 's/rpcuser//g' | tr -d '=' | grep -v -e '#')"
-    rpcpassword="$(grep 'rpcpassword' ${daemon_cfg_dir}/litecoin.conf | sed -e 's/rpcpassword//g' | tr -d '=' | grep -v -e '#')"
-    rpcport="$(grep 'rpcport' ${daemon_cfg_dir}/litecoin.conf | sed -e 's/rpcport//g' | tr -d '=' | grep -v -e '#')"
-    rpctimeout="$(grep 'rpctimeout' ${daemon_cfg_dir}/litecoin.conf | sed -e 's/rpctimeout//g' | tr -d '=' | grep -v -e '#')"
-    testnet="$(grep 'testnet' ${daemon_cfg_dir}/litecoin.conf | sed -e 's/testnet//g' | tr -d '=' | grep -v -e '#')"
-    maxconnections="$(grep 'maxconnections' ${daemon_cfg_dir}/litecoin.conf | sed -e 's/maxconnections//g' | tr -d '=' | grep -v -e '#')"
-    server="$(grep 'server' ${daemon_cfg_dir}/litecoin.conf | sed -e 's/server//g' | tr -d '=' | grep -v -e '#')"
+    rpcuser="$(grep 'rpcuser' ${daemon_cfg_dir}/dogecoin.conf | sed -e 's/rpcuser//g' | tr -d '=' | grep -v -e '#')"
+    rpcpassword="$(grep 'rpcpassword' ${daemon_cfg_dir}/dogecoin.conf | sed -e 's/rpcpassword//g' | tr -d '=' | grep -v -e '#')"
+    rpcport="$(grep 'rpcport' ${daemon_cfg_dir}/dogecoin.conf | sed -e 's/rpcport//g' | tr -d '=' | grep -v -e '#')"
+    rpctimeout="$(grep 'rpctimeout' ${daemon_cfg_dir}/dogecoin.conf | sed -e 's/rpctimeout//g' | tr -d '=' | grep -v -e '#')"
+    testnet="$(grep 'testnet' ${daemon_cfg_dir}/dogecoin.conf | sed -e 's/testnet//g' | tr -d '=' | grep -v -e '#')"
+    maxconnections="$(grep 'maxconnections' ${daemon_cfg_dir}/dogecoin.conf | sed -e 's/maxconnections//g' | tr -d '=' | grep -v -e '#')"
+    server="$(grep 'server' ${daemon_cfg_dir}/dogecoin.conf | sed -e 's/server//g' | tr -d '=' | grep -v -e '#')"
 
     # Not set
     rpcuser=${rpcuser:-"NOT SET"}

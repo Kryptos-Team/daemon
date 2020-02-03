@@ -10,13 +10,14 @@ cmd_install=("i;install" "command_install.sh" "Install coin daemon")
 cmd_start=("st;start" "command_start.sh" "Start the daemon")
 cmd_stop=("sp;stop" "command_stop.sh" "Stop the daemon")
 cmd_restart=("r;restart" "command_restart.sh" "Restart the daemon")
+cmd_gui=("g;gui" "command_gui.sh" "Start GUI  (if available)")
 cmd_details=("dt;details" "command_details.sh" "Display the daemon information")
 cmd_donate=("do;donate" "command_donate.sh" "Donation options")
 cmd_debug=("d;debug" "command_debug.sh" "Enable/disbale debug mode")
 cmd_update=("u;update" "command_update.sh" "Check and apply daemon update")
 
 ### Set specific opt here
-currentopt=("${cmd_start[@]}" "${cmd_stop[@]}" "${cmd_restart[@]}" "${cmd_details[@]}")
+currentopt=("${cmd_start[@]}" "${cmd_stop[@]}" "${cmd_restart[@]}" "${cmd_details[@]}" "${cmd_gui[@]}")
 
 # Debug
 currentopt+=("${cmd_debug[@]}")

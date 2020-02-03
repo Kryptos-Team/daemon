@@ -66,7 +66,12 @@ command_wipe.sh() {
   fn_fetch_function
 }
 
-command_donate.sh() {
+command_gui.sh() {
+  function_file="${FUNCNAME[0]}"
+  fn_fetch_function
+}
+
+command_start.sh() {
   function_file="${FUNCNAME[0]}"
   fn_fetch_function
 }

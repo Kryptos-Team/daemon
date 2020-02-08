@@ -94,7 +94,7 @@ fn_start_tmux() {
   echo -en "\n"
 }
 
-clear
+install_header.sh
 check.sh
 
 fn_print_dots_nl "${daemon_name}"

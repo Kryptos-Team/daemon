@@ -65,7 +65,7 @@ fn_stop_pre_check() {
   fi
 }
 
-clear
+install_header.sh
 fn_print_dots_nl "${daemon_name}"
 info_config.sh
 fn_stop_pre_check

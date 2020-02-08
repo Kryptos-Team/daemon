@@ -119,9 +119,7 @@ fn_fetch_file() {
     if [ "${local_file_name##*.}" == "bz2" ] || [ "${local_file_name##*.}" == "gz" ] || [ "${local_file_name##*.}" == "zip" ] || [ "${local_file_name##*.}" == "xz" ]; then
       echo -en "downloading ${local_file_name}..."
       fn_sleep_time
-      echo -en "\033[1K"
       curlcmd=$(curl --progress-bar --fail -L -o "${local_file_dir}/${local_file_name}" "${remote_file_url}")
-      echo -en "downloading ${local_file_name}..."
     else
       echo -en "fetching ${local_file_name}..."
       curlcmd=$(curl -s --fail -L -o "${local_file_dir}/${local_file_name}" "${remote_file_url}" 2>&1)

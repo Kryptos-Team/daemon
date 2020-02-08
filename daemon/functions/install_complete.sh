@@ -6,6 +6,9 @@ local function_self_name=$(basename "$(readlink -f "${BASH_SOURCE[0]}")")
 
 echo -e ""
 fn_print_dash
+
+touch "${daemon_installed}"
+
 echo -e "Install Complete!"
 fn_script_log_info "Install Complete!"
 echo -e ""

@@ -5,7 +5,7 @@ local command_action="Install"
 local function_self_name=$(basename "$(readlink -f "${BASH_SOURCE[0]}")")
 
 echo -e ""
-echo -e "================================"
+fn_print_dash
 echo -e "Install Complete!"
 fn_script_log_info "Install Complete!"
 echo -e ""

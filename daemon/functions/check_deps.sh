@@ -174,7 +174,7 @@ fn_deps_detector() {
     if [ -n "$(ls /usr/lib/libdb-4.8.so 2>/dev/null)" ]; then
       dep_status=0
       berkeley_status=0
-      unset dep_to_check[0]
+      unset array_deps_required[0]
     else
       dep_status=1
       berkeley_status=1
@@ -265,14 +265,14 @@ fn_deps_build_redhat() {
 if [ "$(whoami)" == "root" ]; then
   echo -e ""
   echo -e "${lightyellow}Checking dependicies as root${default}"
-  echo -e "==============================="
+  fn_print_dash
   fn_print_information_nl "Checking any missing dependicies for ${daemon_name}"
   fn_print_information_nl "This will NOT install ${daemon_name} daemon"
   fn_sleep_time
 else
   echo -e ""
   echo -e "${lightyellow}Checking dependicies${default}"
-  echo -e "==============================="
+  fn_print_dash
 fi
 
 # Filter checking in to Debian or Redhat

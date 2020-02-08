@@ -16,14 +16,14 @@ fn_check_cfg_dir() {
 fn_fetch_default_config() {
   echo -e ""
   echo -e "${lightyellow}Downloading ${daemon_name} configuration${default}"
-  echo -e "====================================="
+  fn_print_dash
   fn_sleep_time
-  fn_fetch_file "https://raw.githubusercontent.com/Kryptos-Team/daemon/master/daemon/configurations/${short_name}/${config}" "${default_config_dir}/${short_name}" "coin.conf" "nochmodx" "norun" "forcedl" "nomd5"
+  fn_fetch_file "https://raw.githubusercontent.com/Kryptos-Team/daemon/master/daemon/configurations/${short_name}/coin.conf" "${default_config_dir}/${short_name}" "coin.conf" "nochmodx" "norun" "forcedl" "nomd5"
 }
 
 fn_default_config_local() {
   echo -e "copying configuration file"
-  cp -nv "${default_config_dir}/${short_name}/coin.conf" "${daemon_config_file}/"
+  cp -nv "${default_config_dir}/${short_name}/coin.conf" "${daemon_config_file}"
   fn_sleep_time
 }
 
@@ -35,8 +35,8 @@ fn_set_config_vars() {
     rpcpassword="${password_random}"
     echo -e "changing rpcuser/rpcpassword"
     fn_script_log_info "changing rpcuser/rpcpassword"
-    sed -i "s/RPCADMINUSER/${rpcuser}/g" "${daemon_cfg_dir}/${config}"
-    sed -i "s/RPCADMINPASSWORD/${rpcpassword}/g" "${daemon_cfg_dir}/${config}"
+    sed -i "s/RPCADMINUSER/${rpcuser}/g" "${daemon_config_file}"
+    sed -i "s/RPCADMINPASSWORD/${rpcpassword}/g" "${daemon_config_file}"
     fn_sleep_time
   else
     fn_print_warning_nl "Configuration file not found, cannot alter it"

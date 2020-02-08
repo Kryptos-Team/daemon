@@ -7,7 +7,7 @@ local function_self_name=$(basename "$(readlink -f "${BASH_SOURCE[0]}")")
 if [ "${check_logs}" != "1" ]; then
   echo -e ""
   echo -e "${lightyellow}Creating log directories${default}"
-  echo -e "==================================="
+  fn_print_dash
 fi
 
 fn_sleep_time

@@ -6,7 +6,7 @@ local function_self_name=$(basename "$(readlink -f "${BASH_SOURCE[0]}")")
 
 echo -e ""
 echo -e "${lightyellow}${daemon_name} Directory${default}"
-echo -e "================================="
+fn_print_dash
 fn_sleep_time
 if [ -f "${daemon_files}/${daemon_installed}" ]; then
   fn_print_warning_nl "A daemon is already installed here"

@@ -5,7 +5,7 @@ local command_action="Console"
 local function_self_name=$(basename "$(readlink -f "${BASH_SOURCE[0]}")")
 
 echo -e "${lightyellow}Support Kryptos Team${default}"
-echo -e "===================="
+fn_print_dash
 echo -e ""
 echo -e "Been using Kryptos"
 echo -e "Consider donating to support development"

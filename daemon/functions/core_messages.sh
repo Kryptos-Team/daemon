@@ -28,7 +28,7 @@ fn_ansi_loader() {
 fn_sleep_time() {
   if [ "${sleeptime}" != "0" ] || [ "${travistest}" != "1" ]; then
     if [ -z "${sleeptime}" ]; then
-      sleeptime=3
+      sleeptime=1.5
     fi
     sleep "${sleeptime}"
   fi
@@ -106,6 +106,11 @@ fn_script_log_info() {
 }
 
 # On-Screen automated functions
+
+# ==================================
+fn_print_dash() {
+  echo -e "=================================="
+}
 
 # [ .... ]
 fn_print_dots() {
@@ -239,7 +244,7 @@ fn_print_info_nl() {
 fn_print_header() {
   echo -e ""
   echo -e "${lightyellow}${daemon_name} ${command_action}${default}"
-  echo -e "=====================================${default}"
+  fn_print_dash
 }
 
 # Complete!

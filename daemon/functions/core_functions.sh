@@ -87,11 +87,6 @@ check_deps.sh() {
   fn_fetch_function
 }
 
-check_executable.sh() {
-  function_file="${FUNCNAME[0]}"
-  fn_fetch_function
-}
-
 check_ip.sh() {
   function_file="${FUNCNAME[0]}"
   fn_fetch_function
@@ -113,6 +108,11 @@ check_root.sh() {
 }
 
 check_system_dir.sh() {
+  function_file="${FUNCNAME[0]}"
+  fn_fetch_function
+}
+
+check_status.sh() {
   function_file="${FUNCNAME[0]}"
   fn_fetch_function
 }

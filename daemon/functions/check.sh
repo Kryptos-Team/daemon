@@ -15,13 +15,6 @@ if [ "${function_self_name}" != "command_install.sh" ] && [ "${function_self_nam
   check_system_dir.sh
 fi
 
-local allowed_commands_array=(command_start.sh command_debug.sh)
-for allowed_command in "${allowed_commands_array[@]}"; do
-  if [ "${allowed_command}" == "${function_self_name}" ]; then
-    check_executables.sh
-  fi
-done
-
 
 local allowed_commands_array=(command_start.sh command_debug.sh command_install.sh)
 for allowed_command in "${allowed_commands_array[@]}"; do

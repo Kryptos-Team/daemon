@@ -94,9 +94,21 @@ fn_start_tmux() {
   echo -en "\n"
 }
 
+clear
 check.sh
 
-fn_print_dots "${daemon_name}"
+fn_print_dots_nl "${daemon_name}"
+# Is the daemon already started?
+# $status comes from check_status.sh, which is run by check.sh for this command
+if [ "${status}" != "0" ]; then
+  fn_print_warn_nl "${daemon_name} is already running"
+  fn_script_log_warn "${daemon_name} is already running"
+
+  if [ -z "${exitbypass}" ]; then
+    core_exit.sh
+  fi
+fi
 
 info_config.sh
 fn_start_tmux
+core_exit.sh

@@ -47,7 +47,7 @@ fn_install_daemon_files() {
     md5="3037405e18dd46906ed7077cf4eb6d48"
   elif [ "${short_name}" == "XPM" ]; then
     local_file_name="primecoin-${daemon_version}-linux.tar.gz"
-    local_dir_name="primecoin-${daemon_version}"
+    local_dir_name="primecoin-${daemon_version}-linux"
     remote_file_url="https://github.com/primecoin/primecoin/releases/download/v${daemon_version}xpm/${local_file_name}"
     chmodx="nochmodx"
     run="norun"

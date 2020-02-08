@@ -109,5 +109,11 @@ if [ "${status}" != "0" ]; then
 fi
 
 info_config.sh
+
+# Update bin directory path
+if [ "${short_name}" == "XPM" ]; then
+  daemon_bin_dir="${daemon_files}/bin/64"
+fi
+
 fn_start_tmux
 core_exit.sh

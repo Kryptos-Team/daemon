@@ -18,17 +18,17 @@ fn_fetch_default_config() {
   echo -e "${lightyellow}Downloading ${daemon_name} configuration${default}"
   echo -e "====================================="
   fn_sleep_time
-  fn_fetch_file "https://raw.githubusercontent.com/Kryptos-Team/daemon/master/daemon/configurations/${short_name}/${config}" "${default_config_dir}/${short_name}" "${config}" "nochmodx" "norun" "forcedl" "nomd5"
+  fn_fetch_file "https://raw.githubusercontent.com/Kryptos-Team/daemon/master/daemon/configurations/${short_name}/${config}" "${default_config_dir}/${short_name}/coin.conf" "nochmodx" "norun" "forcedl" "nomd5"
 }
 
 fn_default_config_local() {
   echo -e "copying configuration file"
-  cp -nv "${default_config_dir}/${short_name}/${config}" "${daemon_cfg_dir}/${config}"
+  cp -nv "${default_config_dir}/${short_name}/coin.conf" "${daemon_config_file}/"
   fn_sleep_time
 }
 
 fn_set_config_vars() {
-  if [ -f "${daemon_cfg_dir}/${config}" ]; then
+  if [ -f "${daemon_config_file}" ]; then
     user_random="$(tr -dc A-Za-z0-9_ </dev/urandom | head -c 8 | xargs)"
     password_random="$(tr -dc A-Za-z0-9_ </dev/urandom | head -c 8 | xargs)"
     rpcuser="user_${user_random}"
@@ -44,14 +44,6 @@ fn_set_config_vars() {
     fn_sleep_time
   fi
 }
-
-if [ "${short_name}" == "BTC" ]; then
-  config="bitcoin.conf"
-elif [ "${short_name}" == "DOGE" ]; then
-  config="dogecoin.conf"
-elif [ "${short_name}" == "LTC" ]; then
-  config="litecoin.conf"
-fi
 
 fn_check_cfg_dir
 fn_fetch_default_config

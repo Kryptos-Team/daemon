@@ -23,6 +23,7 @@ log_dir="${daemon_files}/logs"
 daemon_logs="${log_dir}/${daemon_name}.log"
 tmp_dir="${daemon_files}/tmp"
 daemon_cfg_dir="${daemon_files}/config"
+daemon_config_file="${daemon_cfg_dir}/coin.conf"
 daemon_installed="${daemon_files}/.installed"
 default_config_dir="${daemon_dir}/configurations"
 

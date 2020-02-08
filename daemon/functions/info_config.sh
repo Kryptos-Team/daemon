@@ -91,14 +91,11 @@ fn_info_config_litecoind() {
 
 if [ "${short_name}" == "BTC" ]; then
   fn_info_config_bitcoind
-  daemon_config_file="${daemon_cfg_dir}/bitcoin.conf"
   daemon_bin_dir="${daemon_files}/bitcoin-0.19.0.1/bin"
 elif [ "${short_name}" == "DOGE" ]; then
   fn_info_config_dogecoind
-  daemon_config_file="${daemon_cfg_dir}/dogecoin.conf"
   daemon_bin_dir="${daemon_files}/dogecoin-1.14.2/bin"
 elif [ "${short_name}" == "LTC" ]; then
   fn_info_config_litecoind
-  daemon_config_file="${daemon_cfg_dir}/litecoin.conf"
   daemon_bin_dir="${daemon_files}/litecoin-0.17.1/bin"
 fi

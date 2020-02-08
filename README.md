@@ -73,6 +73,7 @@ Replace ./daemon with the actual script name. Every command has a short version,
 | Start         | ./daemon start         | ./daemon st |
 | Stop          | ./daemon stop          | ./daemon sp |
 | Restart       | ./daemon restart       | ./daemon r  |
+| Console       | ./daemon console       | ./daemon c  |
 | Update Coin   | ./daemon update-coin   | ./daemon uc |
 | Update Daemon | ./daemon update-daemon | ./daemon ud |
 | Wipe          | ./daemon wipe          | ./daemon w  |

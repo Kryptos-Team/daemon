@@ -59,7 +59,7 @@ fn_install_daemon_files() {
   fn_dl_extract "${tmp_dir}" "${local_file_name}" "${daemon_files}"
 
   echo -en "copying ${daemon_files}/${local_dir_name}/*..."
-  cp -rf "${daemon_files}/${local_dir_name}/*" "${daemon_files}"
+  cp -rf "${daemon_files}/${local_dir_name}"/* "${daemon_files}"
   local exitcode=$?
   if [ "${exitcode}" -ne 0 ]; then
     fn_print_fail_eol_nl

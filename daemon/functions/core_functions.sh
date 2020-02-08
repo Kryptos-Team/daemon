@@ -51,6 +51,11 @@ command_install.sh() {
   fn_fetch_function
 }
 
+command_console.sh() {
+  function_file="${FUNCNAME[0]}"
+  fn_fetch_function
+}
+
 fn_autoinstall() {
   auto_install=1
   command_install.sh

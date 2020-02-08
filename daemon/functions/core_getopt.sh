@@ -11,6 +11,7 @@ cmd_start=("st;start" "command_start.sh" "Start the daemon")
 cmd_stop=("sp;stop" "command_stop.sh" "Stop the daemon")
 cmd_restart=("r;restart" "command_restart.sh" "Restart the daemon")
 cmd_gui=("g;gui" "command_gui.sh" "Start GUI  (if available)")
+cmd_console=("c;console" "command_console.sh" "Access daemon console")
 cmd_details=("dt;details" "command_details.sh" "Display the daemon information")
 cmd_donate=("do;donate" "command_donate.sh" "Donation options")
 cmd_debug=("d;debug" "command_debug.sh" "Enable/disbale debug mode")
@@ -21,7 +22,7 @@ cmd_update_daemon=("ud;update-daemon" "command_update_daemon.sh" "Check and appl
 currentopt=("${cmd_start[@]}" "${cmd_stop[@]}" "${cmd_restart[@]}" "${cmd_details[@]}" "${cmd_gui[@]}")
 
 # Debug
-currentopt+=("${cmd_debug[@]}")
+currentopt+=("${cmd_console[@]}" "${cmd_debug[@]}")
 
 # Installer
 currentopt+=("${cmd_autoinstall[@]}" "${cmd_install[@]}" "${cmd_update[@]}" "${cmd_update_daemon[@]}")

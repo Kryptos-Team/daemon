@@ -11,7 +11,7 @@ fn_install_daemon_files() {
     remote_file_url="https://bitcoin.org/bin/bitcoin-core-${daemon_version}/${local_file_name}"
     chmodx="nochmodx"
     run="norun"
-    force="noforce"
+    forcedl="noforce"
     md5="2ba6f3b6b3ebc80d4d60147ae7f4eacb"
   elif [ "${short_name}" == "DOGE" ]; then
     local_file_name="dogecoin-${daemon_version}-x86_64-linux-gnu.tar.gz"

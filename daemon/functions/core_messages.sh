@@ -285,13 +285,13 @@ fn_print_error2_nl() {
 
 # Warning!
 fn_print_warning() {
-  echo -en "${lighyellow}Warning!${default} $*"
+  echo -en "${lightyellow}Warning!${default} $*"
   fn_sleep_time
 }
 
 # Warning!
 fn_print_warning_nl() {
-  echo -e "${lighyellow}Warning!${default} $*"
+  echo -e "${lightyellow}Warning!${default} $*"
   fn_sleep_time
 }
 

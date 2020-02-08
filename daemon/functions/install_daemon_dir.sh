@@ -8,8 +8,9 @@ echo -e ""
 echo -e "${lightyellow}${daemon_name} Directory${default}"
 fn_print_dash
 fn_sleep_time
-if [ -f "${daemon_files}/${daemon_installed}" ]; then
+if [ -f "${daemon_installed}" ]; then
   fn_print_warning_nl "A daemon is already installed here"
+  exit
 fi
 echo -e "${daemon_files}"
 echo -e ""

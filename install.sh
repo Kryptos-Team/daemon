@@ -10,6 +10,7 @@ fi
 version="v1.0.0"
 short_name="core"
 daemon_name="core"
+daemon_version="0"
 root_dir=$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")
 self_name=$(basename "$(readlink -f "${BASH_SOURCE[0]}")")
 lock_selfname=".${self_name}.lock"
@@ -226,6 +227,7 @@ fn_install_file() {
   cp -R "${self_name}" "${local_file_name}"
   sed -i -e "s/short_name=\"core\"/short_name=\"${short_name}\"/g" "${local_file_name}"
   sed -i -e "s/daemon_name=\"core\"/daemon_name=\"${daemon_name}\"/g" "${local_file_name}"
+  sed -i -e "s/daemon_version=\"0\"/daemon_version=\"${daemon_version}\"/g" "${local_file_name}"
   echo -e "Installed ${daemon_name} daemon as ${local_file_name}"
   echo -e ""
   if [ ! -d "${daemon_files}" ]; then

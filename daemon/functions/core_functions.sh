@@ -148,6 +148,11 @@ info_config.sh() {
   fn_fetch_function
 }
 
+info_messages.sh() {
+  function_file="${FUNCNAME[0]}"
+  fn_fetch_function
+}
+
 # Logs
 
 logs.sh() {

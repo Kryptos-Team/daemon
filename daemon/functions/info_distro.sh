@@ -157,7 +157,7 @@ avail_space=$(df -hP "${root_dir}" | grep -v "Filesystem" | awk '{print $4}')
 
 # Network Interface name
 net_int=$(ip -o addr | grep "${ip}" | awk '{print $2}')
-net_link=$(ethtool "${net_int}" 2>/dev/null| grep Speed | awk '{print $2}')
+net_link=$(ethtool "${net_int}" 2>/dev/null | grep Speed | awk '{print $2}')
 
 # External IP address
 if [ -z "${ext_ip}" ]; then

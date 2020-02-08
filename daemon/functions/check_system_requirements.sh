@@ -9,7 +9,7 @@ info_distro.sh
 if [ "${short_name}" == "BTC" ]; then
   ram_req_mb="1024"
   ram_req_gb="1"
-elif [ "${short_name}" == "DOGE" ] || [ "${short_name}" == "LTC" ] || [ "${short_name}" == "NMC" ] || [ "${short_name}" == "PPC" ]; then
+elif [ "${short_name}" == "DOGE" ] || [ "${short_name}" == "LTC" ] || [ "${short_name}" == "NMC" ] || [ "${short_name}" == "PPC" ] || [ "${short_name}" == "XPM" ]; then
   ram_req_mb="2048"
   ram_req_gb="2"
 fi

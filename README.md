@@ -85,6 +85,7 @@ Replace ./daemon with the actual script name. Every command has a short version,
 - Litecoin
 - Namecoin
 - Peercoin
+- Primecoin
 
 ## Donate
 

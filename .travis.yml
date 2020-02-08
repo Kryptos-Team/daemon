@@ -34,3 +34,8 @@ jobs:
       script:
         - bash install.sh peercoind
         - bash peercoind auto-install
+    - stage: coin
+      name: "Primecoin Test"
+      script:
+        - bash install.sh primecoind
+        - bash primecoind auto-install

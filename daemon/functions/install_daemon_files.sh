@@ -40,11 +40,19 @@ fn_install_daemon_files() {
   elif [ "${short_name}" == "PPC" ]; then
     local_file_name="peercoin-${daemon_version}-x86_64-linux-gnu.tar.gz"
     local_dir_name="peercoin-${daemon_version}"
-    remote_file_url="https://github.com/peercoin/peercoin/releases/download/v${demon_version}ppc/${local_file_name}"
+    remote_file_url="https://github.com/peercoin/peercoin/releases/download/v${daemon_version}ppc/${local_file_name}"
     chmodx="nochmodx"
     run="norun"
     forcedl="noforcedl"
     md5="3037405e18dd46906ed7077cf4eb6d48"
+  elif [ "${short_name}" == "XPM" ]; then
+    local_file_name="primecoin-${daemon_version}-linux.tar.gz"
+    local_dir_name="primecoin-${daemon_version}"
+    remote_file_url="https://github.com/primecoin/primecoin/releases/download/v${daemon_version}xpm/${local_file_name}"
+    chmodx="nochmodx"
+    run="norun"
+    forcedl="noforcedl"
+    md5="159fe914cc8d2ab4f642abe1b7598c30"
   fi
 
   fn_fetch_file "${remote_file_url}" "${tmp_dir}" "${local_file_name}" "${chmodx}" "${run}" "${forcedl}" "${md5}"

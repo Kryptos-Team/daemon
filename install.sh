@@ -197,6 +197,7 @@ fn_daemon_info() {
   short_name="${daemon_info_array[1]}"       # LTC
   daemon_name="${daemon_info_array[0]}"      # litecoind
   daemon_full_name="${daemon_info_array[2]}" # Litecoin
+  daemon_version="${daemon_info_array[3]}"   # 0.17.1
 }
 
 fn_install_getopt() {

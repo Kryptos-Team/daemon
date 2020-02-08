@@ -29,3 +29,8 @@ jobs:
       script:
         - bash install.sh namecoind
         - bash namecoind auto-install
+    - stage: coin
+      name: "Peercoin Test"
+      script:
+        - bash install.sh peercoind
+        - bash peercoind auto-install

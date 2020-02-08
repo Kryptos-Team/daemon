@@ -237,6 +237,8 @@ fn_deps_build_debain() {
     array_deps_required+=(berkeley-complete build-essential libtool autotools-dev automake pkg-config libssl-dev libevent-dev bsdmainutils python3 libboost-system-dev libboost-filesystem-dev libboost-chrono-dev libboost-test-dev libboost-thread-dev)
   elif [ "${short_name}" == "NMC" ]; then
     array_deps_required+=(berkeley-complete build-essential libtool autotools-dev automake pkg-config libssl-dev libevent-dev bsdmainutils python3 libboost-system-dev libboost-filesystem-dev libboost-chrono-dev libboost-test-dev libboost-thread-dev)
+  elif [ "${short_name}" == "PPC" ]; then
+    array_deps_required+=(berkeley-complete build-essential libtool autotools-dev automake pkg-config libssl-dev libevent-dev bsdmainutils python3 libboost-system-dev libboost-filesystem-dev libboost-chrono-dev libboost-test-dev libboost-thread-dev)
   fi
 
   fn_check_loop
@@ -260,6 +262,8 @@ fn_deps_build_redhat() {
   elif [ "${short_name}" == "LTC" ]; then
     array_deps_required+=(gcc-c++ libtool make autoconf automake openssl-devel libevent-devel boost-devel libdb4-devel libdb4-cxx-devel python3)
   elif [ "${short_name}" == "NMC" ]; then
+    array_deps_required+=(gcc-c++ libtool make autoconf automake openssl-devel libevent-devel boost-devel libdb4-devel libdb4-cxx-devel python3)
+  elif [ "${short_name}" == "PPC" ]; then
     array_deps_required+=(gcc-c++ libtool make autoconf automake openssl-devel libevent-devel boost-devel libdb4-devel libdb4-cxx-devel python3)
   fi
 

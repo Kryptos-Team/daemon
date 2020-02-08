@@ -37,40 +37,32 @@ fn_install_daemon_files() {
     run="norun"
     forcedl="noforcedl"
     md5="b5a5ef01ff12892114ed8641e25d56f5"
+  elif [ "${short_name}" == "PPC" ]; then
+    local_file_name="peercoin-${daemon_version}-x86_64-linux-gnu.tar.gz"
+    local_dir_name="peercoin-${daemon_version}"
+    remote_file_url="https://github.com/peercoin/peercoin/releases/download/v${demon_version}ppc/${local_file_name}"
+    chmodx="nochmodx"
+    run="norun"
+    forcedl="noforcedl"
+    md5="3037405e18dd46906ed7077cf4eb6d48"
   fi
 
   fn_fetch_file "${remote_file_url}" "${tmp_dir}" "${local_file_name}" "${chmodx}" "${run}" "${forcedl}" "${md5}"
   fn_dl_extract "${tmp_dir}" "${local_file_name}" "${daemon_files}"
 
-  echo -en "copying ${daemon_files}/${local_dir_name}/bin..."
-  cp -rf "${daemon_files}/${local_dir_name}/bin" "${daemon_files}"
+  echo -en "copying ${daemon_files}/${local_dir_name}/*..."
+  cp -rf "${daemon_files}/${local_dir_name}/*" "${daemon_files}"
   local exitcode=$?
   if [ "${exitcode}" -ne 0 ]; then
     fn_print_fail_eol_nl
     if [ -f "${daemon_logs}" ]; then
-      fn_script_log_fatal "copying ${daemon_files}/${local_dir_name}/bin"
+      fn_script_log_fatal "copying ${daemon_files}/${local_dir_name}/*"
     fi
     core_exit.sh
   else
     fn_print_ok_eol_nl
     if [ -f "${daemon_logs}" ]; then
-      fn_script_log_pass "copying ${daemon_files}/${local_dir_name}/bin"
-    fi
-  fi
-
-  echo -en "copying ${daemon_files}/${local_dir_name}/share..."
-  cp -rf "${daemon_files}/${local_dir_name}/share" "${daemon_files}"
-  local exitcode=$?
-  if [ "${exitcode}" -ne 0 ]; then
-    fn_print_fail_eol_nl
-    if [ -f "${daemon_logs}" ]; then
-      fn_script_log_fatal "copying ${daemon_files}/${local_dir_name}/bin"
-    fi
-    core_exit.sh
-  else
-    fn_print_ok_eol_nl
-    if [ -f "${daemon_logs}" ]; then
-      fn_script_log_pass "copying ${daemon_files}/${local_dir_name}/bin"
+      fn_script_log_pass "copying ${daemon_files}/${local_dir_name}/*"
     fi
   fi
 

@@ -78,6 +78,14 @@ Replace ./daemon with the actual script name. Every command has a short version,
 | Update Daemon | ./daemon update-daemon | ./daemon ud |
 | Wipe          | ./daemon wipe          | ./daemon w  |
 
+## Supported Coins
+
+- Bitcoin
+- Dogecoin
+- Litecoin
+- Namecoin
+- Peercoin
+
 ## Donate
 
 If you would like to donate to the project, there are several ways you can via:

@@ -219,7 +219,7 @@ fn_check_loop() {
 # Generate required dependicies
 fn_deps_build_debain() {
   array_deps_missing=()
-  array_deps_required=(curl wget gzip bzip2 bc jq unzip)
+  array_deps_required=(curl wget gzip bzip2 bc jq sysvbanner unzip)
 
   if [ -n "$(command -v tmux 2>/dev/null)" ]; then
     tmux_check=1
@@ -241,7 +241,7 @@ fn_deps_build_debain() {
 
 fn_deps_build_redhat() {
   array_deps_missing=()
-  array_deps_required=(epel-release curl wget gzip bzip2 bc jq unzip)
+  array_deps_required=(epel-release curl wget gzip bzip2 bc jq sysvbanner unzip)
 
   if [ -n "$(command -v tmux 2>/dev/null)" ]; then
     tmux_check=1

@@ -5,15 +5,22 @@ before_script:
 
 jobs:
   include:
+    - stage: list
+      name: "List coins"
+      script:
+        - bash install.sh list
     - stage: coin
       name: "Bitcoin Test"
       script:
-        - bash install.sh list
         - bash install.sh bitcoind
         - bash bitcoind autoinstall
     - stage: coin
+      name: "Dogecoin Test"
+      script:
+        - bash install.sh dogecoind
+        - bash dogecoind autoinstall
+    - stage: coin
       name: "Litecoin Test"
       script:
-        - bash install.sh list
         - bash install.sh litecoind
         - bash litecoind autoinstall

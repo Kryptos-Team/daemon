@@ -2,3 +2,4 @@ Daemon Name,Coin Symbol,Full Name,Version
 bitcoind,BTC,Bitcoin,0.19.0.1
 dogecoind,DOGE,Dogecoin,1.14.2
 litecoind,LTC,Litecoin,0.17.1
+namecoind,NMC,Namecoin,0.19.0.1

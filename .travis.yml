@@ -13,14 +13,19 @@ jobs:
       name: "Bitcoin Test"
       script:
         - bash install.sh bitcoind
-        - bash bitcoind autoinstall
+        - bash bitcoind auto-install
     - stage: coin
       name: "Dogecoin Test"
       script:
         - bash install.sh dogecoind
-        - bash dogecoind autoinstall
+        - bash dogecoind auto-install
     - stage: coin
       name: "Litecoin Test"
       script:
         - bash install.sh litecoind
-        - bash litecoind autoinstall
+        - bash litecoind auto-install
+    - stage: coin
+      name: "Namecoin Test"
+      script:
+        - bash install.sh namecoind
+        - bash namecoind auto-install

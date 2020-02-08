@@ -5,7 +5,7 @@ local function_self_name=$(basename "$(readlink -f "${BASH_SOURCE[0]}")")
 ### Define all commands here
 ## User commands | Trigger commands | Description
 # Standard commands
-cmd_autoinstall=("ai;autoinstall" "fn_autoinstall" "Automatically install coin daemon with default configurations")
+cmd_autoinstall=("ai;auto-install" "fn_autoinstall" "Automatically install coin daemon with default configurations")
 cmd_install=("i;install" "command_install.sh" "Install coin daemon")
 cmd_start=("st;start" "command_start.sh" "Start the daemon")
 cmd_stop=("sp;stop" "command_stop.sh" "Stop the daemon")

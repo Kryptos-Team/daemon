@@ -29,6 +29,14 @@ fn_install_daemon_files() {
     run="norun"
     forcedl="noforcedl"
     md5="a152828cd984c4dda16719aa406609ff"
+  elif [ "${short_name}" == "NMC" ]; then
+    local_file_name="namecoin-${daemon_version}-x86_64-linux-gnu.tar.gz"
+    local_dir_name="namecoin-${daemon_version}"
+    remote_file_url="https://www.namecoin.org/files/namecoin-core/namecoin-core-${daemon_version}/${local_file_name}"
+    chmodx="nochmodx"
+    run="norun"
+    forcedl="noforcedl"
+    md5="b5a5ef01ff12892114ed8641e25d56f5"
   fi
 
   fn_fetch_file "${remote_file_url}" "${tmp_dir}" "${local_file_name}" "${chmodx}" "${run}" "${forcedl}" "${md5}"

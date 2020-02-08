@@ -40,7 +40,7 @@ fn_install_daemon_files() {
   elif [ "${short_name}" == "PPC" ]; then
     local_file_name="peercoin-${daemon_version}-x86_64-linux-gnu.tar.gz"
     local_dir_name="peercoin-${daemon_version}"
-    remote_file_url="https://github.com/peercoin/peercoin/releases/download/v${daemon_version}ppc/${local_file_name}"
+    remote_file_url="https://github.com/peercoin/peercoin/releases/download/v${daemon_version}.1ppc/${local_file_name}"
     chmodx="nochmodx"
     run="norun"
     forcedl="noforcedl"

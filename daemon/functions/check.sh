@@ -36,3 +36,11 @@ for allowed_command in "${allowed_commands_array[@]}"; do
     check_deps.sh
   fi
 done
+
+local allowed_commands_array=( command_start.sh command_stop.sh command_update.sh )
+for allowed_command in "${allowed_commands_array[@]}"
+do
+	if [ "${allowed_command}" == "${function_self_name}" ]; then
+		check_status.sh
+	fi
+done

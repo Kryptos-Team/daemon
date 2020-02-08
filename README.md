@@ -9,7 +9,7 @@
 - [ ] Monitor
 - [ ] Alerts
 - [ ] Backup
-- [ ] Console
+- [x] Console
 - [ ] Daemon Details
 
 ## Compatibility

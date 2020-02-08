@@ -30,9 +30,16 @@ for allowed_command in "${allowed_commands_array[@]}"; do
   fi
 done
 
-local allowed_commands_array=(command_start.sh command_install.sh command_update.sh command _gui.sh command_restart.sh command_update_daemon.sh)
+local allowed_commands_array=(command_start.sh command_install.sh command_update.sh command_gui.sh command_restart.sh command_update_daemon.sh)
 for allowed_command in "${allowed_commands_array[@]}"; do
   if [ "${allowed_command}" == "${function_self_name}" ]; then
     check_logs.sh
+  fi
+done
+
+local allowed_commands_array=(command_start.sh command_install.sh command_update.sh command_gui.sh command_restart.sh command_update_daemon.sh)
+for allowed_command in "${allowed_commands_array[@]}"; do
+  if [ "${allowed_command}" == "${function_self_name}" ]; then
+    check_deps.sh
   fi
 done

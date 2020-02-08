@@ -18,11 +18,9 @@ functions_dir="${daemon_dir}/functions"
 data_dir="${daemon_dir}/data"
 daemon_list="${data_dir}/daemon_list.csv"
 daemon_list_menu="${data_dir}/daemon_list_menu.csv"
-config_dir="${daemon_dir}/config"
-config_dir_daemon="${config_dir}/${daemon_name}"
 daemon_files="${root_dir}/${short_name}"
 log_dir="${daemon_files}/logs"
-daemon_logs="${log_dir}/daemon.log"
+daemon_logs="${log_dir}/${daemon_name}.log"
 tmp_dir="${daemon_files}/tmp"
 daemon_cfg_dir="${daemon_files}/config"
 daemon_installed="${daemon_files}/.installed"
@@ -243,7 +241,7 @@ if [ "$(whoami)" == "root" ]; then
   if [ "${user_input}" == "install" ]; then
     echo -e "[ FAIL ] Do NOT run this script as root!"
     exit 1
-  elif [ ! -f "${functions_dir/core_messages.sh/}" ]; then
+  elif [ ! -f "${functions_dir/core_messages.sh}" ]; then
     echo -e "[ FAIL ] Do NOT run this script as root!"
     exit 1
   else
@@ -293,10 +291,6 @@ if [ "${short_name}" == "core" ]; then
 # Daemon mode
 else
   core_functions.sh
-  if [ ! -f "${tmp_dir}/install.sh" ]; then
-    fn_fetch_file_github "" "install.sh" "${tmp_dir}" "chmodx" "norun" "noforcedl" "nomd5"
-  fi
-
   fn_ansi_loader
   getopt=$1
   core_getopt.sh

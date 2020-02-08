@@ -263,11 +263,11 @@ if [ "${short_name}" == "core" ]; then
 
   if [ "${user_input}" == "list" ] || [ "${user_input}" == "l" ]; then
     {
-      tail -n +1 "${daemon_list}" | awk -F "," '{print $1 "\t" $2 "\t" $3}'
+      tail -n +1 "${daemon_list}" | awk -F "," '{print $1 "\t" $2 "\t" $3 "\t" $4}'
     } | column -s $'\t' -t | more
     exit
   elif [ "${user_input}" == "install" ] || [ "${user_input}" == "i" ]; then
-    tail -n +2 "${daemon_list}" | awk -F "," '{print $1 "," $2 "," $3}' >"${daemon_list_menu}"
+    tail -n +2 "${daemon_list}" | awk -F "," '{print $1 "," $2 "," $3 "," $4}' >"${daemon_list_menu}"
     fn_install_menu result "Kryptos Team" "Select coin daemon name to install" "${daemon_list_menu}"
     user_input="${result}"
     fn_daemon_info

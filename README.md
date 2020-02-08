@@ -10,7 +10,7 @@
 - [ ] Alerts
 - [ ] Backup
 - [x] Console
-- [ ] Daemon Details
+- [x] Daemon Details
 
 ## Compatibility
 

@@ -18,7 +18,7 @@ fn_fetch_default_config() {
   echo -e "${lightyellow}Downloading ${daemon_name} configuration${default}"
   echo -e "====================================="
   fn_sleep_time
-  fn_fetch_file "https://raw.githubusercontent.com/Kryptos-Team/daemon/master/daemon/configurations/${short_name}/${config}" "${default_config_dir}/${short_name}/coin.conf" "nochmodx" "norun" "forcedl" "nomd5"
+  fn_fetch_file "https://raw.githubusercontent.com/Kryptos-Team/daemon/master/daemon/configurations/${short_name}/${config}" "${default_config_dir}/${short_name}" "coin.conf" "nochmodx" "norun" "forcedl" "nomd5"
 }
 
 fn_default_config_local() {

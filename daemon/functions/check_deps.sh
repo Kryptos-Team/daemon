@@ -122,7 +122,7 @@ fn_found_missing_deps() {
         cmd="sudo yum -y install ${array_deps_missing[@]}"
         eval "${cmd}"
       fi
-      if [ $? == "0" ]; then
+      if [ $? != "0" ]; then
         fn_print_failure_nl "Unable to install dependicies"
         fn_script_log_fatal "Unable to install dependicies"
         echo -e ""

@@ -49,7 +49,7 @@ fn_set_config_vars() {
 
     echo -e "changing datadir to ${daemon_data_dir}"
     fn_script_log_info "changed datadir to ${daemon_data_dir}"
-    sed -i "s/DATADIR/${daemon_data_dir}/g" "${daemon_config_file}"
+    sed -i "s#DATADIR#${daemon_data_dir}#g" "${daemon_config_file}"
 
     fn_sleep_time
   else

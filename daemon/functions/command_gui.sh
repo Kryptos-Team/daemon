@@ -54,7 +54,7 @@ fn_start_tmux() {
       echo -e ""
       echo -e "Command"
       fn_print_dash
-      echo -e "tmux new-session -d -s \"${self_name}\" \"${daemon_bin_dir}/${daemon_name} -conf=${daemon_config_file}\"" | tee -a "${console_log}"
+      echo -e "tmux new-session -d -s \"${self_name}\" \"${gui_cmd} -conf=${daemon_config_file}\"" | tee -a "${console_log}"
       echo -e ""
       echo -e "Error"
       fn_print_dash

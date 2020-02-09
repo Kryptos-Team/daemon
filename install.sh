@@ -28,6 +28,7 @@ daemon_config_file="${daemon_cfg_dir}/coin.conf"
 daemon_installed="${daemon_files}/.installed"
 default_config_dir="${daemon_dir}/configurations"
 daemon_bin_dir="${daemon_files}/bin"
+daemon_data_dir="${daemon_files}/data"
 console_log="${log_dir}/console.log"
 
 user_input="${1}"

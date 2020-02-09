@@ -23,3 +23,7 @@ fi
 if [ ! -d "${daemon_files}" ]; then
   mkdir -v "${daemon_files}"
 fi
+
+if [ ! "${daemon_data_dir}" ]; then
+  mkdir -v "${daemon_data_dir}"
+fi

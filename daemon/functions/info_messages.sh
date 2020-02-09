@@ -110,27 +110,53 @@ fn_info_message_server_resource() {
   } | column -s $'\t' -t
 }
 
+fn_info_message_daemon_resource() {
+  # Daemon Resource Usage
+  #######################
+  # CPU Load:    80%
+  # Mem Used:    76%  865MB
+  #
+  # Storage
+  # Total:        200G
+  # Daemon Files: 27G
+
+  echo -e ""
+  echo -e "${lightyellow}${daemon_name} Resource Usage${default}"
+  fn_print_dash
+  {
+    if [ "${status}" == "1" ]; then
+      echo -e "${lightblue}CPU Used:\t${default}${cpu_used}%\t${cpu_used_mhz}MHz${default}"
+      echo -e "${lightblue}Mem Used:\t${default}${p_mem_used}%\t${mem_used}MB${default}"
+    else
+      echo -e "${lightblue}CPU Used:\t${default}0%${default}"
+      echo -e "${lightblue}Mem Used:\t${default}0%\t0MB${default}"
+    fi
+  } | column -s $'\t' -t
+  echo -e ""
+  {
+    echo -e "${lightyellow}Storage${default}"
+    echo -e "${lightblue}Total:\t${default}${root_dir_du}"
+    echo -e "${lightblue}Daemon Files:\t${default}${daemon_files_du}"
+  } | column -s $'\t' -t
+}
+
 fn_info_message_daemon() {
   #
   # Daemon Details
   #==========================================================================================================================================================================================================================================
-  # Script name:           bitcoind
-  # LinuxGSM version:     v19.1
+  # Daemon name:           bitcoind
+  # Daemon version:        v19.1
   # User:                   bitcoind
   # Location:               /home/bitcoind
   # Config file:            /home/bitcoind/BTC/conf/coin.conf
+  # Data directory:         /home/bitcoind/BTC/data
 
   echo -e ""
-  echo -e "${lightgreen}${selfname}Daemon Details${default}"
+  echo -e "${lightgreen}${self_name} Daemon Details${default}"
   fn_print_dash
   {
     # Daemon name
     echo -e "${lightblue}Daemon name:\t${default}${self_name}"
-
-    # Version
-    if [ -n "${version}" ]; then
-      echo -e "${lightblue}Version:\t${default}${version}"
-    fi
 
     # Daemon Version
     if [ -n "${daemon_version}" ]; then
@@ -140,7 +166,7 @@ fn_info_message_daemon() {
     # User
     echo -e "${lightblue}User:\t${default}$(whoami)"
 
-    # Script location
+    # Daemon location
     echo -e "${lightblue}Location:\t${default}${root_dir}"
 
     # Config file location
@@ -153,46 +179,55 @@ fn_info_message_daemon() {
         echo -e "${lightblue}Config file:\t${default}${red}${daemon_config_file}${default} (${red}FILE MISSING${default})"
       fi
     fi
+
+    # Data directory location
+    if [ -n "${daemon_data_dir}" ]; then
+      if [ -d "${daemon_data_dir}" ]; then
+        echo -e "${lightblue}Data Directory:\t${default}${daemon_data_dir}"
+      else
+        echo -e "${lightblue}Data Directory:\t${default}${red}${daemon_data_dir}${default} (${red}DIRECTORY MISSING${default})"
+      fi
+    fi
   } | column -s $'\t' -t
 }
 
-fn_info_message_statusbottom(){
-	echo -e ""
-	if [ "${status}" == "0" ]; then
-		echo -e "${lightblue}Status:\t${red}OFFLINE${default}"
-	else
-		echo -e "${lightblue}Status:\t${green}ONLINE${default}"
-	fi
-	echo -e ""
+fn_info_message_statusbottom() {
+  echo -e ""
+  if [ "${status}" == "0" ]; then
+    echo -e "${lightblue}Status:\t${red}OFFLINE${default}"
+  else
+    echo -e "${lightblue}Status:\t${green}ONLINE${default}"
+  fi
+  echo -e ""
 }
 
-fn_info_logs(){
-	echo -e ""
-	echo -e "${self_name} Logs"
-	fn_print_dash
+fn_info_logs() {
+  echo -e ""
+  echo -e "${self_name} Logs"
+  fn_print_dash
 
-	if [ -n "${log_dir}" ]; then
-		if [ ! "$(ls -A "${log_dir}")" ]; then
-			echo -e "${log_dir} (NO LOG FILES)"
-		elif [ ! -s "${daemon_logs}" ]; then
-			echo -e "${daemon_logs} (LOG FILE IS EMPTY)"
-		else
-			echo -e "${daemon_logs}"
-			tail -25 "${daemon_logs}"
-		fi
-		echo -e ""
-	fi
+  if [ -n "${log_dir}" ]; then
+    if [ ! "$(ls -A "${log_dir}")" ]; then
+      echo -e "${log_dir} (NO LOG FILES)"
+    elif [ ! -s "${daemon_logs}" ]; then
+      echo -e "${daemon_logs} (LOG FILE IS EMPTY)"
+    else
+      echo -e "${daemon_logs}"
+      tail -25 "${daemon_logs}"
+    fi
+    echo -e ""
+  fi
 
-	if [ -n "${console_log}" ]; then
-		echo -e "\nConsole log\n===================="
-		if [ ! "$(ls -A "${log_dir}")" ]; then
-			echo -e "${log_dir} (NO LOG FILES)"
-		elif [ ! -s "${console_log}" ]; then
-			echo -e "${console_log} (LOG FILE IS EMPTY)"
-		else
-			echo -e "${console_log}"
-			tail -25 "${console_log}" | awk '{ sub("\r$", ""); print }'
-		fi
-		echo -e ""
-	fi
+  if [ -n "${console_log}" ]; then
+    echo -e "\nConsole log\n===================="
+    if [ ! "$(ls -A "${log_dir}")" ]; then
+      echo -e "${log_dir} (NO LOG FILES)"
+    elif [ ! -s "${console_log}" ]; then
+      echo -e "${console_log} (LOG FILE IS EMPTY)"
+    else
+      echo -e "${console_log}"
+      tail -25 "${console_log}" | awk '{ sub("\r$", ""); print }'
+    fi
+    echo -e ""
+  fi
 }

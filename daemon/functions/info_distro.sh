@@ -2,6 +2,11 @@
 
 local function_self_name=$(basename "$(readlink -f "${BASH_SOURCE[0]}")")
 
+# Daemon pid
+if [ "${status}" == "1" ]; then
+  daemon_pid=$(tmux list-sessions -F "#{session_name} #{pane_pid}" | grep "^${self_name}" | awk '{print $2}')
+fi
+
 ### Distro information
 
 ## Distro
@@ -86,6 +91,12 @@ cpu_model="$(awk -F: '/model name/ {name=$2} END {print name}' /proc/cpuinfo | s
 cpu_cores="$(awk -F: '/model name/ {core++} END {print core}' /proc/cpuinfo)"
 cpu_frequency="$(awk -F: '/cpu MHz/ {freq=$2} END {print freq}' /proc/cpuinfo | sed 's/^[ \t]*//;s/[ \t]*$//')"
 
+# CPU usage of the daemon pid
+if [ "${daemon_pid}" ]; then
+  cpu_used=$(ps --forest -o pcpu -g "${daemon_pid}" | awk '{s+=$1} END {print s}')
+  cpu_used_mhz=$(echo "${cpu_frequency} * ${cpu_used} / 100" | bc)
+fi
+
 ## Memory Information
 # Available RAM and swap
 
@@ -117,6 +128,12 @@ if [ -n "$(command -v numfmt 2>/dev/null)" ]; then
   swap_total=$(numfmt --to=iec --from=iec --suffix=B "$(grep ^SwapTotal /proc/meminfo | awk '{print $2}')K")
   swap_free=$(numfmt --to=iec --from=iec --suffix=B "$(grep ^SwapFree /proc/meminfo | awk '{print $2}')K")
   swap_used=$(numfmt --to=iec --from=iec --suffix=B "$(($(grep ^SwapTotal /proc/meminfo | awk '{print $2}') - $(grep ^SwapFree /proc/meminfo | awk '{print $2}')))K")
+
+  # RAM usage of the daemon pid
+  if [ "${daemon_pid}" ]; then
+    mem_used=$(ps --forest -o rss -g "${daemon_pid}" | awk '{s+=$1} END {print s}' | awk '{$1/=1024;printf "%.0f",$1}{print $2}')
+    p_mem_used=$(ps --forest -o %mem -g "${daemon_pid}" | awk '{s+=$1} END {print s}')
+  fi
 else
   # Older distros will need to use free.
   # Older versions of free do not support -h option.
@@ -155,22 +172,33 @@ total_space=$(df -hP "${root_dir}" | grep -v "Filesystem" | awk '{print $2}')
 used_space=$(df -hP "${root_dir}" | grep -v "Filesystem" | awk '{print $3}')
 avail_space=$(df -hP "${root_dir}" | grep -v "Filesystem" | awk '{print $4}')
 
+# Daemon used space total
+root_dir_du=$(du -sh "${root_dir}" 2>/dev/null | awk '{print $1}')
+if [ -z "${root_dir_du}" ]; then
+  root_dir_du="0M"
+fi
+
+# Daemon files used space
+daemon_files_du=$(du -sh "${daemon_files}" 2>/dev/null | awk '{print $1}')
+if [ -z "${daemon_files_du}" ]; then
+  daemon_files_du="0M"
+fi
 # Network Interface name
 net_int=$(ip -o addr | grep "${ip}" | awk '{print $2}')
 net_link=$(ethtool "${net_int}" 2>/dev/null | grep Speed | awk '{print $2}')
 
 # External IP address
 if [ -z "${ext_ip}" ]; then
-	ext_ip=$(curl -4 -m 3 ifconfig.co 2>/dev/null)
-	exitcode=$?
-	# Should ifconfig.co return an error will use last known IP.
-	if [ ${exitcode} -eq 0 ]; then
-		echo -e "${ext_ip}" > "${tmp_dir}/ext_ip.txt"
-	else
-		if [ -f "${tmp_dir}/ext_ip.txt" ]; then
-			ext_ip=$(cat "${tmp_dir}/ext_ip.txt")
-		else
-			echo -e "x.x.x.x"
-		fi
-	fi
+  ext_ip=$(curl -4 -m 3 ifconfig.co 2>/dev/null)
+  exitcode=$?
+  # Should ifconfig.co return an error will use last known IP.
+  if [ ${exitcode} -eq 0 ]; then
+    echo -e "${ext_ip}" >"${tmp_dir}/ext_ip.txt"
+  else
+    if [ -f "${tmp_dir}/ext_ip.txt" ]; then
+      ext_ip=$(cat "${tmp_dir}/ext_ip.txt")
+    else
+      echo -e "x.x.x.x"
+    fi
+  fi
 fi

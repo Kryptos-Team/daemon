@@ -16,7 +16,7 @@ if [ "${function_self_name}" != "command_install.sh" ] && [ "${function_self_nam
 fi
 
 
-local allowed_commands_array=(command_start.sh command_debug.sh command_install.sh)
+local allowed_commands_array=(command_start.sh command_debug.sh command_install.sh command_gui.sh)
 for allowed_command in "${allowed_commands_array[@]}"; do
   if [ "${allowed_command}" == "${function_self_name}" ]; then
     check_system_requirements.sh
@@ -37,7 +37,7 @@ for allowed_command in "${allowed_commands_array[@]}"; do
   fi
 done
 
-local allowed_commands_array=( command_start.sh command_stop.sh command_update.sh command_details.sh )
+local allowed_commands_array=( command_start.sh command_stop.sh command_update.sh command_details.sh command_gui.sh )
 for allowed_command in "${allowed_commands_array[@]}"
 do
 	if [ "${allowed_command}" == "${function_self_name}" ]; then

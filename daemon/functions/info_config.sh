@@ -12,13 +12,14 @@ fn_info_config_bitcoind() {
     server="${zero}"
     rpctimeout="${zero}"
   else
-    rpcuser="$(grep 'rpcuser' ${daemon_config_file} | sed -e 's/rpcuser//g' | tr -d '=' | grep -v -e '#')"
-    rpcpassword="$(grep 'rpcpassword' ${daemon_config_file} | sed -e 's/rpcpassword//g' | tr -d '=' | grep -v -e '#')"
-    rpcport="$(grep 'rpcport' ${daemon_config_file} | sed -e 's/rpcport//g' | tr -d '=' | grep -v -e '#')"
-    rpctimeout="$(grep 'rpcclienttimeout' ${daemon_config_file} | sed -e 's/rpcclienttimeout//g' | tr -d '=' | grep -v -e '#')"
-    testnet="$(grep 'testnet' ${daemon_config_file} | sed -e 's/testnet//g' | tr -d '=' | grep -v -e '#')"
-    maxconnections="$(grep 'maxconnections' ${daemon_config_file} | sed -e 's/maxconnections//g' | tr -d '=' | grep -v -e '#')"
-    server="$(grep 'server' ${daemon_config_file} | sed -e 's/server//g' | tr -d '=' | grep -v -e '#')"
+    rpcuser=$(grep 'rpcuser' "${daemon_config_file}" | sed -e 's/rpcuser//g' | tr -d '=' | grep -v -e '#')
+    rpcpassword=$(grep 'rpcpassword' "${daemon_config_file}" | sed -e 's/rpcpassword//g' | tr -d '=' | grep -v -e '#')
+    rpcport=$(grep 'rpcport' "${daemon_config_file}" | sed -e 's/rpcport//g' | tr -d '=' | grep -v -e '#')
+    rpctimeout=$(grep 'rpcclienttimeout' "${daemon_config_file}" | sed -e 's/rpcclienttimeout//g' | tr -d '=' | grep -v -e '#')
+    testnet=$(grep 'testnet' "${daemon_config_file}" | sed -e 's/testnet//g' | tr -d '=' | grep -v -e '#')
+    maxconnections=$(grep 'maxconnections' "${daemon_config_file}" | sed -e 's/maxconnections//g' | tr -d '=' | grep -v -e '#')
+    server=$(grep 'server' "${daemon_config_file}" | sed -e 's/server//g' | tr -d '=' | grep -v -e '#')
+    ip=$(grep 'bind' "${daemon_config_file}" | sed -e 's/^[ \t]*//g' -e '/^#/d' -e 's/bind//g' | tr -d '=')
 
     # Not set
     rpcuser=${rpcuser:-"NOT SET"}

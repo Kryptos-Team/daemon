@@ -178,11 +178,6 @@ if [ -z "${root_dir_du}" ]; then
   root_dir_du="0M"
 fi
 
-# Daemon files used space
-daemon_files_du=$(du -sh "${daemon_files}" 2>/dev/null | awk '{print $1}')
-if [ -z "${daemon_files_du}" ]; then
-  daemon_files_du="0M"
-fi
 # Network Interface name
 net_int=$(ip -o addr | grep "${ip}" | awk '{print $2}')
 net_link=$(ethtool "${net_int}" 2>/dev/null | grep Speed | awk '{print $2}')

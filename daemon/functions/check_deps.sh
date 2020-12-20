@@ -21,10 +21,7 @@ fn_install_berkeley_db() {
       sleep 1
       echo -en "   \r"
       if [ "${distro_id}" == "ubuntu" ] || [ "${distro_id}" == "Ubuntu" ]; then
-        if [ "${distro_version}" == "20.04" ]; then
-          cmd="sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys C70EF1F0305A1ADB9986DBD8D46F45428842CE5E;echo 'deb http://ppa.launchpad.net/bitcoin/bitcoin/ubuntu bionic main' | sudo tee /etc/apt/sources.list.d/berkeley-db.list;sudo apt update;sudo apt install -y libdb4.8-dev libdb4.8++-dev"
-          eval "${cmd}"
-        elif [ "${distro_version}" == "18.04" ]; then
+        if [ "${distro_version}" == "18.04" ]; then
           cmd="sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys C70EF1F0305A1ADB9986DBD8D46F45428842CE5E;echo 'deb http://ppa.launchpad.net/bitcoin/bitcoin/ubuntu bionic main' | sudo tee /etc/apt/sources.list.d/berkeley-db.list;sudo apt update;sudo apt install -y libdb4.8-dev libdb4.8++-dev"
           eval "${cmd}"
         elif [ "${distro_version}" == "16.04" ]; then

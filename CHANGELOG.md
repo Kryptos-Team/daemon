@@ -6,6 +6,7 @@
 
 **Implemented enhancements:**
 
+- Added daemon CI [\#6](https://github.com/Kryptos-Team/daemon/pull/6) ([abhi1693](https://github.com/abhi1693))
 - Added issue templates [\#5](https://github.com/Kryptos-Team/daemon/pull/5) ([abhi1693](https://github.com/abhi1693))
 - Added docker support [\#4](https://github.com/Kryptos-Team/daemon/pull/4) ([abhi1693](https://github.com/abhi1693))
 

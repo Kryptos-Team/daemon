@@ -1,6 +1,8 @@
 #!/usr/bin/env sh
 
-./install.sh coin_name "${COIN_NAME}"
-./"${COIN_NAME}" install
+set -e
+
+./install.sh "${COIN_NAME}"
+./"${COIN_NAME}" auto-install
 ./"${COIN_NAME}" start
 ./"${COIN_NAME}" console

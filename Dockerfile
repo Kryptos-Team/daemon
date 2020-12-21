@@ -1,17 +1,31 @@
 FROM ubuntu:focal
 
 ENV COIN_NAME=litecoind
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Install dependencies
+RUN apt-get update
+RUN apt-get install --yes curl iproute2 sudo
+
+# Add user
+RUN useradd -ms /bin/bash $COIN_NAME
+RUN usermod -aG sudo $COIN_NAME
+RUN echo "$COIN_NAME ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
 # Copy project files to WORKDIR
-COPY . /opt
+COPY . /home/$COIN_NAME
 
 # Fix permissions
-RUN chmod +x /opt/*.sh
+RUN chown -R $COIN_NAME:$COIN_NAME /home/$COIN_NAME/*
+RUN chmod +x /home/$COIN_NAME/*.sh
 
 # Change the working directory
-WORKDIR /opt
+WORKDIR /home/$COIN_NAME
+
+# Set the user
+USER $COIN_NAME
 
 # Ru the entrypoint script
-ENTRYPOINT ["/opt/entrypoint.sh"]
+ENTRYPOINT ["./entrypoint.sh"]
 
 CMD ["sh"]

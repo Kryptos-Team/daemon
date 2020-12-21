@@ -25,6 +25,9 @@ WORKDIR /home/$COIN_NAME
 # Set the user
 USER $COIN_NAME
 
+# Add volumes
+VOLUME ["/home/$COIN_NAME/coins"]
+
 # Ru the entrypoint script
 ENTRYPOINT ["./entrypoint.sh"]
 

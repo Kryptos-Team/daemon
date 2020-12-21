@@ -2,25 +2,26 @@ FROM ubuntu:focal
 
 ENV COIN_NAME=litecoind
 ENV DEBIAN_FRONTEND=noninteractive
+ENV HOME=/opt
 
 # Install dependencies
 RUN apt-get update
 RUN apt-get install --yes curl iproute2 gnupg2 sudo
 
 # Add user
-RUN useradd -ms /bin/bash $COIN_NAME
+RUN useradd -s /bin/bash -d $HOME $COIN_NAME
 RUN usermod -aG sudo $COIN_NAME
 RUN echo "$COIN_NAME ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
 # Copy project files to WORKDIR
-COPY . /home/$COIN_NAME
+COPY . $HOME
 
 # Fix permissions
-RUN chown -Rv $COIN_NAME:$COIN_NAME /home/$COIN_NAME/*
-RUN chmod +x /home/$COIN_NAME/*.sh
+RUN chown -Rv $COIN_NAME:$COIN_NAME $HOME
+RUN chmod +x $HOME/*.sh
 
 # Change the working directory
-WORKDIR /home/$COIN_NAME
+WORKDIR $HOME
 
 # Set the user
 USER $COIN_NAME

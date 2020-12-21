@@ -1,0 +1,10 @@
+# Created by .ignore support plugin (hsz.mobi)
+.dockerignore
+.github/
+.git/
+.gitignore
+.idea
+coins
+*.lock
+*.yml
+*coind

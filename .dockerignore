@@ -4,7 +4,7 @@
 .git/
 .gitignore
 .idea
-coins
+coins/
 *.lock
 *.yml
 *coind

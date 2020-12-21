@@ -2,9 +2,10 @@
 
 set -e
 
-echo "Installing $COIN_NAME script"
-./install.sh "${COIN_NAME}"
-
+if [ ! -f "${COIN_NAME}" ]; then
+  echo "Installing $COIN_NAME script"
+  ./install.sh "${COIN_NAME}"
+fi
 echo "Installing $COIN_NAME daemon"
 ./"${COIN_NAME}" auto-install
 

@@ -16,7 +16,7 @@ RUN echo "$COIN_NAME ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 COPY . /home/$COIN_NAME
 
 # Fix permissions
-RUN chown -R $COIN_NAME:$COIN_NAME /home/$COIN_NAME/*
+RUN chown -Rv $COIN_NAME:$COIN_NAME /home/$COIN_NAME/*
 RUN chmod +x /home/$COIN_NAME/*.sh
 
 # Change the working directory
@@ -24,9 +24,6 @@ WORKDIR /home/$COIN_NAME
 
 # Set the user
 USER $COIN_NAME
-
-# Add volumes
-VOLUME ["/home/$COIN_NAME/coins"]
 
 # Ru the entrypoint script
 ENTRYPOINT ["./entrypoint.sh"]

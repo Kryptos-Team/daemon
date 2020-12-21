@@ -24,10 +24,8 @@ if [ ! -d "${daemon_files}" ]; then
   mkdir -v "${daemon_files}"
 fi
 
-if [ -d "${daemon_files}" ]; then
-  sudo chown -Rv "${USER}":"${USER}" "${daemon_files}"
-fi
+sudo chown -Rv "${USER}":"${USER}" "${daemon_files}"
 
-if [ ! "${daemon_data_dir}" ]; then
+if [ ! -d "${daemon_data_dir}" ]; then
   mkdir -v "${daemon_data_dir}"
 fi

@@ -10,10 +10,7 @@ fn_print_header
 fn_print_information_nl "Press \"CTRL+b\" then \"d\" to exit the console"
 fn_print_warning_nl "Do NOT press CTRL+c to exit"
 echo -e ""
-
-if ! fn_prompt_yn "Continue?" Y; then
-  return
-fi
+sleep 10
 
 fn_print_dots_nl "Accessing console"
 check_status.sh

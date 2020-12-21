@@ -73,3 +73,4 @@ fabric.properties
 
 .idea/
 daemon/data/daemon_list_menu.csv
+coins/

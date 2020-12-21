@@ -21,14 +21,17 @@ fn_install_berkeley_db() {
       sleep 1
       echo -en "   \r"
       if [ "${distro_id}" == "ubuntu" ] || [ "${distro_id}" == "Ubuntu" ]; then
-        if [ "${distro_version}" == "18.04" ]; then
-          cmd="sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys C70EF1F0305A1ADB9986DBD8D46F45428842CE5E;echo 'deb http://ppa.launchpad.net/bitcoin/bitcoin/ubuntu bionic main' | sudo tee /etc/apt/sources.list.d/berkeley-db.list;sudo apt update;sudo apt install -y libdb4.8-dev libdb4.8++-dev"
+        if [ "${distro_version}" == "20.04" ]; then
+          cmd="sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys C70EF1F0305A1ADB9986DBD8D46F45428842CE5E;echo 'deb http://ppa.launchpad.net/bitcoin/bitcoin/ubuntu bionic main' | sudo tee /etc/apt/sources.list.d/berkeley-db.list;sudo apt-get update;sudo apt-get install -y libdb4.8-dev libdb4.8++-dev"
+          eval "${cmd}"
+        elif [ "${distro_version}" == "18.04" ]; then
+          cmd="sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys C70EF1F0305A1ADB9986DBD8D46F45428842CE5E;echo 'deb http://ppa.launchpad.net/bitcoin/bitcoin/ubuntu bionic main' | sudo tee /etc/apt/sources.list.d/berkeley-db.list;sudo apt-get update;sudo apt-get install -y libdb4.8-dev libdb4.8++-dev"
           eval "${cmd}"
         elif [ "${distro_version}" == "16.04" ]; then
-          cmd="sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys C70EF1F0305A1ADB9986DBD8D46F45428842CE5E;echo 'deb http://ppa.launchpad.net/bitcoin/bitcoin/ubuntu xenial main' | sudo tee /etc/apt/sources.list.d/berkeley-db.list;sudo apt update;sudo apt install -y libdb4.8-dev libdb4.8++-dev"
+          cmd="sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys C70EF1F0305A1ADB9986DBD8D46F45428842CE5E;echo 'deb http://ppa.launchpad.net/bitcoin/bitcoin/ubuntu xenial main' | sudo tee /etc/apt/sources.list.d/berkeley-db.list;sudo apt-get update;sudo apt-get install -y libdb4.8-dev libdb4.8++-dev"
           eval "${cmd}"
         elif [ "${distro_version}" == "14.04" ]; then
-          cmd="sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys C70EF1F0305A1ADB9986DBD8D46F45428842CE5E;echo 'deb http://ppa.launchpad.net/bitcoin/bitcoin/ubuntu trusty main' | sudo tee /etc/apt/sources.list.d/berkeley-db.list;sudo apt update;sudo apt install -y libdb4.8-dev libdb4.8++-dev"
+          cmd="sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys C70EF1F0305A1ADB9986DBD8D46F45428842CE5E;echo 'deb http://ppa.launchpad.net/bitcoin/bitcoin/ubuntu trusty main' | sudo tee /etc/apt/sources.list.d/berkeley-db.list;sudo apt-get update;sudo apt-get install -y libdb4.8-dev libdb4.8++-dev"
           eval "${cmd}"
         else
           fn_print_warn_nl "Installing Berkeley DB"
@@ -37,13 +40,13 @@ fn_install_berkeley_db() {
         fi
       elif [ "${distro_id}" == "debian" ] || "${distro_id}" == "Debian"; then
         if [ "${distro_version}" == "10" ]; then
-          cmd="sudo apt install apt-transport-https dirmngr;sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys C70EF1F0305A1ADB9986DBD8D46F45428842CE5E;echo 'deb http://ftp.de.debian.org/debian buster main' | sudo tee /etc/apt/sources.list.d/berkeley-db.list;sudo apt update;sudo apt install -y libdb4.8-dev libdb4.8++-dev"
+          cmd="sudo apt-get install apt-transport-https dirmngr;sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys C70EF1F0305A1ADB9986DBD8D46F45428842CE5E;echo 'deb http://ftp.de.debian.org/debian buster main' | sudo tee /etc/apt/sources.list.d/berkeley-db.list;sudo apt-get update;sudo apt-get install -y libdb4.8-dev libdb4.8++-dev"
           eval "${cmd}"
         elif [ "${distro_version}" == "9" ]; then
-          cmd="sudo apt install apt-transport-https dirmngr;sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys C70EF1F0305A1ADB9986DBD8D46F45428842CE5E;echo 'deb http://ftp.de.debian.org/debian stretch main' | sudo tee /etc/apt/sources.list.d/berkeley-db.list;sudo apt update;sudo apt install -y libdb4.8-dev libdb4.8++-dev"
+          cmd="sudo apt-get install apt-transport-https dirmngr;sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys C70EF1F0305A1ADB9986DBD8D46F45428842CE5E;echo 'deb http://ftp.de.debian.org/debian stretch main' | sudo tee /etc/apt/sources.list.d/berkeley-db.list;sudo apt-get update;sudo apt-get install -y libdb4.8-dev libdb4.8++-dev"
           eval "${cmd}"
         elif [ "${distro_version}" == "8" ]; then
-          cmd="sudo apt install apt-transport-https dirmngr;sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys C70EF1F0305A1ADB9986DBD8D46F45428842CE5E;echo 'deb http://ftp.de.debian.org/debian jessie main' | sudo tee /etc/apt/sources.list.d/berkeley-db.list;sudo apt update;sudo apt install -y libdb4.8-dev libdb4.8++-dev"
+          cmd="sudo apt-get install apt-transport-https dirmngr;sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys C70EF1F0305A1ADB9986DBD8D46F45428842CE5E;echo 'deb http://ftp.de.debian.org/debian jessie main' | sudo tee /etc/apt/sources.list.d/berkeley-db.list;sudo apt-get update;sudo apt-get install -y libdb4.8-dev libdb4.8++-dev"
           eval "${cmd}"
         else
           echo -e "Berkeley DB install not available for ${distro_name}"
@@ -113,7 +116,7 @@ fn_found_missing_deps() {
       sleep 1
       echo -en "   \r"
       if [ -n "$(command -v dpkg-query 2>/dev/null)" ]; then
-        cmd="sudo apt update; sudo apt install -y ${array_deps_missing[@]}"
+        cmd="sudo apt-get update; sudo apt-get install -y ${array_deps_missing[@]}"
         eval "${cmd}"
       elif [ -n "$(command -v dnf 2>/dev/null)" ]; then
         cmd="sudo dnf -y install ${array_deps_missing[@]}"
@@ -129,7 +132,7 @@ fn_found_missing_deps() {
         fn_print_warning_nl "Manually install dependicies"
         fn_script_log_warn "Manually install dependicies"
         if [ -n "$(command -v dpkg-query 2>/dev/null)" ]; then
-          echo -e "    sudo apt update; sudo apt install -y ${array_deps_missing[@]}"
+          echo -e "    sudo apt-get update; sudo apt-get install -y ${array_deps_missing[@]}"
         elif [ -n "$(command -v dnf 2>/dev/null)" ]; then
           echo -e"     sudo dnf -y install ${array_deps_missing[@]}"
         elif [ -n "$(command -v yum 2>/dev/null)" ]; then
@@ -144,7 +147,7 @@ fn_found_missing_deps() {
       fn_print_warning_nl "$(whoami) does not have sudo access. Manually install dependicies"
       fn_script_log_warn "$(whoami) does not have sudo access. Manually install dependicies"
       if [ -n "$(command -v dpkg-query 2>/dev/null)" ]; then
-        echo -e "    sudo apt update; sudo apt install -y ${array_deps_missing[@]}"
+        echo -e "    sudo apt-get update; sudo apt-get install -y ${array_deps_missing[@]}"
       elif [ -n "$(command -v dnf 2>/dev/null)" ]; then
         echo -e"     sudo dnf -y install ${array_deps_missing[@]}"
       elif [ -n "$(command -v yum 2>/dev/null)" ]; then

@@ -1,0 +1,61 @@
+name: Daemon CI
+
+on:
+  schedule:
+    - cron: '0 2 * * *' # run at 2 AM UTC
+  push:
+    branches:
+      - dev
+      - master
+    tags:
+      - 'v*.*.*'
+
+jobs:
+  daemon:
+    name: "Install Test"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: sudo apt-get update && sudo apt-get install --yes curl iproute2 gnupg2 sudo
+
+      - name: List coins
+        run: bash install.sh list
+
+      - name: Bitcoin Test
+        run: |
+          bash install.sh bitcoind
+          bash bitcoind auto-install
+          bash bitcoind details
+
+      - name: Dogecoin Test
+        run: |
+          bash install.sh dogecoind
+          bash dogecoind auto-install
+          bash dogecoind details
+
+      - name: Litecoin Test
+        run: |
+          bash install.sh litecoind
+          bash litecoind auto-install
+          bash litecoind details
+
+      - name: Namecoin Test
+        run: |
+          bash install.sh namecoind
+          bash namecoind auto-install
+          bash namecoind details
+
+      - name: Peercoin Test
+        run: |
+          bash install.sh peercoind
+          bash peercoind auto-install
+          bash peercoind details
+
+      - name: Primecoin Test
+        run: |
+          bash install.sh primecoind
+          bash primecoind auto-install
+          bash primecoind details

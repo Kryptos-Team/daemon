@@ -3,6 +3,7 @@ FROM ubuntu:focal
 ENV COIN_NAME=litecoind
 ENV DEBIAN_FRONTEND=noninteractive
 ENV HOME=/opt
+ENV CI=0
 
 # Install dependencies
 RUN apt-get update

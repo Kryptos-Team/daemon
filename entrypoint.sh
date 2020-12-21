@@ -2,7 +2,8 @@
 
 set -e
 
-if [ ! -f "${COIN_NAME}" ]; then
+if [ "${CI}" -eq 0 ]; then
+  if [ ! -f "${COIN_NAME}" ]; then
   echo "Installing $COIN_NAME script"
   ./install.sh "${COIN_NAME}"
 fi
@@ -12,3 +13,7 @@ echo "Installing $COIN_NAME daemon"
 echo "Starting $COIN_NAME daemon"
 ./"${COIN_NAME}" start
 ./"${COIN_NAME}" console
+else
+  echo "In CI mode, skipping installation"
+  exit 0
+fi

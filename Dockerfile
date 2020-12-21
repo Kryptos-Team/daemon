@@ -5,7 +5,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 # Install dependencies
 RUN apt-get update
-RUN apt-get install --yes curl iproute2 sudo
+RUN apt-get install --yes curl iproute2 gnupg2 sudo
 
 # Add user
 RUN useradd -ms /bin/bash $COIN_NAME

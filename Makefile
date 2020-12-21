@@ -14,7 +14,7 @@ SHELL=/bin/bash
 DOCKER_BUILD_CONTEXT=.
 DOCKER_FILE_PATH=Dockerfile
 
-.PHONY: pre-build docker-build post-build build push pre-push do-push post-push
+.PHONY: pre-build docker-build post-build build push pre-push do-push post-push run
 
 help:
 	@echo 'Usage: make [TARGET]'
@@ -22,6 +22,7 @@ help:
 	@echo 'Targets:'
 	@echo ' build              builds a new version of your Docker image and tags it'
 	@echo ' push               push the image to your registry'
+	@echo ' run                run the latest image'
 
 build: pre-build docker-build post-build
 
@@ -36,7 +37,8 @@ pre-push:
 
 post-push:
 
-
+run:
+	docker run $(IMAGE):$(VERSION) --name $(NAME)
 
 docker-build:
 	docker build $(DOCKER_BUILD_ARGS) -t $(IMAGE):$(VERSION) $(DOCKER_BUILD_CONTEXT) -f $(DOCKER_FILE_PATH)

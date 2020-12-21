@@ -28,6 +28,6 @@ WORKDIR $HOME
 USER $COIN_NAME
 
 # Ru the entrypoint script
-ENTRYPOINT ["/opt/entrypoint.sh"]
+ENTRYPOINT ["sh", "/opt/entrypoint.sh"]
 
 CMD ["sh"]
